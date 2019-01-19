@@ -21,7 +21,7 @@ class Game():
 		# self._screen = pygame.display.set_mode(
 		# 	(self._infoObject.current_w >> 1, self._infoObject.current_h >> 1), pygame.RESIZABLE, 32)
 
-		self._screen = pygame.display.set_mode(1920, 1080, pygame.RESIZABLE)
+		self._screen = pygame.display.set_mode((1920, 1080), pygame.RESIZABLE)
 
 		pygame.display.set_caption("Kinect Game")  # Set the title of the window
 
