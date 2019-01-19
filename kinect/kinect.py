@@ -54,7 +54,7 @@ class Game():
 			x_pos *= self._screen.get_width() 
 			y_pos *= self._screen.get_height()
 
-			pygame.draw.circle(self._screen, (0, 0, 255), (x_pos, y_pos), 20)
+			pygame.draw.circle(self._screen, (0, 0, 255), (100, 100), 20)
 
 class KinectData():
 
