@@ -40,6 +40,7 @@ class Game():
 				if event.type == pygame.QUIT:
 					sys.exit()
 				if event.type == pygame.KEYDOWN:
+					print(pygame.key.get_pressed())
 					sys.exit()
 
 				# Other events as needed
