@@ -49,7 +49,7 @@ class Game():
 
 				if hand is "closed":	
 			
-					size = 50
+					size = 200
 					self._screen.blit(
 						self.hand.get_image(size), 
 						(int(x_pos - size / 2), int(y_pos - size / 2))
