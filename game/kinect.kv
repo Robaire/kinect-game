@@ -1,0 +1,47 @@
+#:kivy 1.10.1
+
+<KinectGame>:
+    target: game_target
+    hand: player_hand
+
+    canvas:
+
+    Label:
+        id: atwater_score
+        font_size: 70
+        center_x: root.width / 3
+        top: root.top
+        text: "AK: " + str(root.ak_score)
+
+    Label:
+        id: foise_score
+        font_size: 70
+        center_x: root.width / 3 * 2
+        top: root.top
+        text: "Foise: " + str(root.foise_score)
+
+    Target:
+        id: game_target
+        center_x: root.center_x + root.target.position_x
+        center_y: root.center_y + root.target.position_y
+
+    Hand:
+        id: player_hand
+        center_x: root.hand.center_x
+        center_y: root.hand.center_y
+
+<Target>:
+    size: 20, 20
+
+    canvas:
+        Ellipse:
+            pos: self.pos
+            size: self.size
+
+<Hand>:
+    size: 30, 30
+
+    canvas:
+        Ellipse:
+            pos: self.pos
+            size: self.size
