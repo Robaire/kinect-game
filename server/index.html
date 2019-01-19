@@ -1,67 +1,62 @@
 <!DOCTYPE html>
-<style>
-  h1, p{
-  text-align: center;
-}
-  h1{
-    font-family: Tahoma, Geneva, sans-serif;
-  }
-  button{
-    height: 28px;
-    width: 80px;
-    text-align: center;
-    font-size: 14px;
-    text-decoration: none;
-    background-color: #ff9999; 
-    display: inline-block;
-    border-radius: 12px;
-    margin-left: 5px;
-  }
-  #text{
-    height: 100%;
-    width: 200px;
-    padding: 5px;
-    margin: 8px 0;
-  }
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <title>Battle of the Buildings</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link
+      rel="stylesheet"
+      href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css"
+      integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO"
+      crossorigin="anonymous"
+    />
+    <link rel="stylesheet" type="text/css" media="screen" href="main.css" />
+  </head>
+  <body class="text-center">
+    <div class="form-signin">
+      <h1 class="h3 mb-3 font-weight-normal">Battle of the Buildings</h1>
+      <input
+        type="text"
+        name=""
+        id="text"
+        class="form-control mb-3"
+        placeholder="Message"
+      />
+      <button id="foisie" class="btn btn-lg btn-primary btn-block">
+        Pro Foisie
+      </button>
+      <button id="ak" class="btn btn-lg btn-primary btn-block">Pro AK</button>
+    </div>
 
-</style>
-<head>
-  <title>Battle of the Buildings</title>
-</head>
-<body>
-  <h1>Battle of the Buildings</h1>
-  <p>
-    <input type="text" name="" id="text" />
-  </p> 
-  <p>
-    <button id="foisie">Pro Foisie</button>
-    <button id="ak">Pro AK</button>
-  </p>
-</body>
+    <script>
+      const loc = window.location;
+      const url = loc.protocol === "https:" ? "wss://" : "ws://";
+      const ws = new WebSocket(url + loc.host + loc.pathname + "websocket");
 
-<script>
-  const loc = window.location;
-  const url = loc.protocol === "https:" ? "wss://" : "ws://";
-  const ws = new WebSocket(url + loc.host + loc.pathname + "websocket");
+      ws.onopen = function() {
+        ws.send("Ree");
+      };
 
-  ws.onopen = function() {
-    ws.send("Ree");
-  };
+      ws.onmessage = function(event) {
+        console.log(event.data);
+      };
 
-  ws.onmessage = function(event) {
-    console.log(event.data);
-  };
+      const text = document.getElementById("text");
+      const foisie = document.getElementById("foisie");
+      const ak = document.getElementById("ak");
 
-  const text = document.getElementById("text");
-  const foise = document.getElementById("foise");
-  const ak = document.getElementById("ak");
+      foisie.onclick = function(event) {
+        console.log("f");
+        ws.send(["foise", text.value]);
+        text.value = "";
+      };
 
-  foise.onclick = function(event) {
-    ws.send(["foise", text.value]);
-  };
-
-  ak.onclick = function(event) {
-    ws.send(["ak", text.value]);
-  };
-</script>
-
+      ak.onclick = function(event) {
+        console.log("ak");
+        ws.send(["ak", text.value]);
+        text.value = "";
+      };
+    </script>
+  </body>
+</html>
