@@ -46,8 +46,7 @@ class Game():
 			self.update()
 
 	def update(self):
-		self.kinect_data.get_hand_data()
-		#print(self.kinect_data.get_hand_data())
+		print(self.kinect_data.get_hand_data())
 
 
 class KinectData():
@@ -70,10 +69,18 @@ class KinectData():
 
 				joint_points = self._kinect.body_joints_to_color_space(body.joints)
 
-				print(self._kinect.color_frame_desc.Width)
-				print(self._kinect.color_frame_desc.Height)
+				x_position = joint_points[11].x / self._kinect.color_frame_desc.Width
+				y_position = joint_points[11].y / self._kinect.color_frame_desc.Height
 
-				return [joint_points[11].x, joint_points[11].y, body.hand_right_state]
+				hand_states = {
+					0 : "unkown"
+					1 : "not tracked"
+					2 : "open"
+					3 : "closed"
+					4 : "lasso"
+				}
+
+				return [x_position, y_position, hand_states[body.hand_right_state]]
 
 	
 __main__ = "Kinect Tracking"
