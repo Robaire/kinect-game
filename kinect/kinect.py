@@ -47,19 +47,22 @@ class Game():
 		if hand_state is not None:
 			x_pos, y_pos, hand = hand_state
 
-			x_pos *= self._screen.get_width() 
-			y_pos *= self._screen.get_height()
+			if x_pos is not float("inf") and y_pos is not float("inf"):
 
-			if hand is "closed":	
+				x_pos *= self._screen.get_width() 
+				y_pos *= self._screen.get_height()
 
-				# self._screen.blit(self.hand.image, (
-				# 	int(x_pos - self.hand.image.get_width / 2), 
-				# 	int(y_pos - self.hand.image.get_height / 2)
-				# 	))
-			else: 
-				pygame.display.draw.circle(self._screen, (0, 0, 0), (int(x_pos), int(y_pos), 10, 0)
-				
-		pygame.display.flip() # Updates the display
+				if hand is "closed":	
+			
+					self._screen.blit(self.hand.image, (
+						int(x_pos - self.hand.image.get_width / 2), 
+						int(y_pos - self.hand.image.get_height / 2)
+						))
+
+				else: 
+					pygame.display.draw.circle(self._screen, (0, 0, 0), (int(x_pos), int(y_pos), 10, 0)
+
+		pygame.display.flip()
 
 class Hand():
 
