@@ -46,13 +46,15 @@ class Game():
 
 	def update(self):
 
-		x_pos, y_pos, hand = self.kinect_data.get_hand_data()
-		#print(self.kinect_data.get_hand_data())
+		hand_data = self.kinect_data.get_hand_data()
 
-		x_pos *= self._screen.get_width() 
-		y_pos *= self._screen.get_height()
+		if hand_data is not None:
+			x_pos, y_pos, hand = hand_data
 
-		pygame.draw.circle(self._screen, (0, 0, 255), (x_pos, y_pos), 20)
+			x_pos *= self._screen.get_width() 
+			y_pos *= self._screen.get_height()
+
+			pygame.draw.circle(self._screen, (0, 0, 255), (x_pos, y_pos), 20)
 
 class KinectData():
 
