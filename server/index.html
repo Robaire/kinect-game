@@ -49,11 +49,13 @@
       foisie.onclick = function(event) {
         console.log("f");
         ws.send(["foise", text.value]);
+        text.value = "";
       };
 
       ak.onclick = function(event) {
         console.log("ak");
         ws.send(["ak", text.value]);
+        text.value = "";
       };
     </script>
   </body>
