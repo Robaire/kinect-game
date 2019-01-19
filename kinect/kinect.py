@@ -60,7 +60,7 @@ class Game():
 						))
 
 				else: 
-					pygame.draw.circle(self._screen, (0, 0, 0), (int(x_pos), int(y_pos), 10, 0))
+					pygame.draw.circle(self._screen, (0, 0, 0), (int(x_pos), int(y_pos)), 10, 0)
 
 		pygame.display.flip()
 
