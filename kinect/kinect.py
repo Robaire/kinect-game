@@ -54,7 +54,13 @@ class Game():
 			x_pos *= self._screen.get_width() 
 			y_pos *= self._screen.get_height()
 
-			pygame.draw.circle(self._screen, (0, 0, 255), (int(x_pos), int(y_pos)), 50, 0)
+			if hand is "open":
+				color = (0, 0, 255)
+			else:
+				color = (255, 0, 0)
+
+			self._screen.fill((255, 255, 255))
+			pygame.draw.circle(self._screen, color, (int(x_pos), int(y_pos)), 10, 0)
 			pygame.display.flip()
 
 class KinectData():
