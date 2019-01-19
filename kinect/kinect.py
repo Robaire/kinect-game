@@ -23,17 +23,11 @@ class Game():
 
 		pygame.display.set_caption("Kinect Game")  # Set the title of the window
 
-		# Used to manage how fast the screen updates
-		self._clock = pygame.time.Clock()
-
         # Kinect runtime object, we want only color and body frames 
-		self._kinect = PyKinectRuntime.PyKinectRuntime(PyKinectV2.FrameSourceTypes_Color | PyKinectV2.FrameSourceTypes_Body)
-
-        # back buffer surface for getting Kinect color frames, 32bit color, width and height equal to the Kinect color frame size
-		# self._frame_surface = pygame.Surface((self._kinect.color_frame_desc.Width, self._kinect.color_frame_desc.Height), 0, 32)
+		self.kinect_runtime = PyKinectRuntime.PyKinectRuntime(PyKinectV2.FrameSourceTypes_Color | PyKinectV2.FrameSourceTypes_Body)
 
 		# Create a Kinect Data object to get position information
-		self.kinect_data = KinectData(self._kinect)
+		self.hand = Hand(self.kinect_runtime)
 
 	def game_loop(self):
 		while True:
@@ -46,32 +40,38 @@ class Game():
 
 	def update(self):
 
-		hand_data = self.kinect_data.get_hand_data()
+		hand_state = self.hand.get_state()
 
-		if hand_data is not None:
-			x_pos, y_pos, hand = hand_data
+		if hand_state is not None:
+			x_pos, y_pos, hand = hand_state
 
 			x_pos *= self._screen.get_width() 
 			y_pos *= self._screen.get_height()
 
-			if hand is "open":
+			if hand is "closed":
 				color = (0, 0, 255)
 			else:
 				color = (255, 0, 0)
 
-			self._screen.fill((255, 255, 255))
-			pygame.draw.circle(self._screen, color, (int(x_pos), int(y_pos)), 10, 0)
-			pygame.display.flip()
+			self._screen.fill((255, 255, 255)) # Sets the background color
 
-class KinectData():
+			pygame.display.blit(self.hand.image, (int(x_pos), int(y_pos)))
+
+			#pygame.draw.circle(self._screen, color, (int(x_pos), int(y_pos)), 10, 0)
+			pygame.display.flip() # Updates the display
+
+class Hand():
 
 	def __init__(self, kinect):
 
 		self._kinect = kinect  # Kinect Runtime Object
 		self._bodies = None  # Stores skeleton position data
 
-	def get_hand_data(self):
-		""" Retrives the positional data of the players right hand """
+		self.image = pygame.image.load("../images/laurie.png")
+		self.image.convert()
+
+	def get_state(self):
+		""" Retrives the positional data of the players hand """
 		if self._kinect.has_new_body_frame():  # Check if there is a new body frame
 			self._bodies = self._kinect.get_last_body_frame()
 
@@ -96,7 +96,8 @@ class KinectData():
 
 				return [x_position, y_position, hand_states[body.hand_right_state]]
 
-	
+
+
 __main__ = "Kinect Tracking"
 
 game = Game()
