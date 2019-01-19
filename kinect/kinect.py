@@ -55,8 +55,8 @@ class Game():
 				if hand is "closed":	
 			
 					self._screen.blit(self.hand.image, (
-						int(x_pos - self.hand.image.get_width / 2), 
-						int(y_pos - self.hand.image.get_height / 2)
+						int(x_pos - self.hand.image.get_width() / 2), 
+						int(y_pos - self.hand.image.get_height() / 2)
 						))
 
 				else: 
