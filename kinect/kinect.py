@@ -36,7 +36,7 @@ class Game():
 		self.building.set_height(200)
 
 		# Life Counter
-		self.lives = Lives(3)
+		self.lives = Lives(3, "comicsansms")
 
 	def game_loop(self):
 		while True:
@@ -145,7 +145,12 @@ class Building():
 		return pygame.transform.scale(self.image, (self.width, self.height))
 
 class Lives():
-	def __init__(self, lives=3):
+	def __init__(self, lives, font):
+
+		pygame.font.init()
+		font_path = pygame.font.match_font(font, False, False)
+		self.font = pygame.font.Font(font_path, 20)
+
 		self.lives = lives
 
 		self.width = 0
@@ -155,8 +160,8 @@ class Lives():
 
 		display = "Lives: " + str(self.lives)
 
-		self.width, self.height = pygame.font.Font.size(display)
-		return pygame.font.Font.render(display, True, (0, 0, 0), None)
+		self.width, self.height = self.font.size(display)
+		return self.font.render(display, True, (0, 0, 0), None)
 
 
 __main__ = "Kinect Tracking"
