@@ -43,13 +43,14 @@ class Game():
 					sys.exit()
 
 				# Other events as needed
-			
 			self.update()
 
 	def update(self):
 
 
 		print(self.kinect_data.get_hand_data())
+		handData = self.kinect_data.get_hand_data()
+		pygame.draw.circle(self._frame_surface, (255, 0, 0), (handData[0], handData[1]), 8)
 
 
 class KinectData():
