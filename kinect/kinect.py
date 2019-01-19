@@ -19,8 +19,7 @@ class Game():
 		# Set the width and height of the screen [width, height]
 		self._infoObject = pygame.display.Info()
 		self._screen = pygame.display.set_mode(
-			(self._infoObject.current_w >> 1, self._infoObject.current_h >> 1),
-			pygame.HWSURFACE|pygame.DOUBLEBUF|pygame.RESIZABLE, 32)
+			(self._infoObject.current_w >> 1, self._infoObject.current_h >> 1), pygame.RESIZABLE, 32)
 
 		pygame.display.set_caption("Kinect Game")  # Set the title of the window
 
@@ -46,11 +45,14 @@ class Game():
 			self.update()
 
 	def update(self):
-		print(self.kinect_data.get_hand_data())
 
-		pygame.draw.circle(self._screen, (0, 0, 255), (100, 100), 20)
-		self._screen.flip() # Updates the screen
+		x_pos, y_pos, hand = self.kinect_data.get_hand_data()
+		#print(self.kinect_data.get_hand_data())
 
+		x_pos *= self._screen.get_width() 
+		y_pos *= self._screen.get_height()
+
+		pygame.draw.circle(self._screen, (0, 0, 255), (x_pos, y_pos), 20)
 
 class KinectData():
 
