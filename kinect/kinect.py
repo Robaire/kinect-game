@@ -24,6 +24,9 @@ class Game():
 		# Hand Object
 		self.hand = Hand(self.kinect_runtime)
 
+		# Building
+		self.building = Building()
+
 	def game_loop(self):
 		while True:
 			for event in pygame.event.get():
@@ -36,6 +39,7 @@ class Game():
 	def update(self):
 
 		self._screen.fill((255, 255, 255)) # Sets the background color
+		self._screen.blit(self.building.get_image(200), (1080, 1920 / 2))
 
 		hand_state = self.hand.get_state() # Gets the state of the hand
 
@@ -67,9 +71,7 @@ class Hand():
 		self._kinect = kinect  # Kinect Runtime Object
 		self._bodies = None  # Stores skeleton position data
 
-		self.image = pygame.image.load("../images/laurie.png")  # Load the image of Laurie's face
-		self.image.convert_alpha()  # Convert the image to a surface
-
+		self.image = pygame.image.load("../images/laurie.png").convert_alpha  # Load the image of Laurie's face
 	
 	def get_image(self, size):
 		return pygame.transform.scale(self.image, (size, size))
@@ -100,7 +102,16 @@ class Hand():
 
 				return [x_position, y_position, hand_states[body.hand_right_state]]
 
+class Building():
 
+	def __init__(self):
+		self.image = pygame.image.load("../images/foise.jpg").convert()
+		self.name = "foise"
+		self.lives = 3
+		self.score = 0
+
+	def get_image(self, height):
+		return pygame.transform.scale(self.image, (height, self.image.get_width() / self.image.get_height() * height) )
 
 __main__ = "Kinect Tracking"
 
