@@ -1,0 +1,28 @@
+<h1>REEE</h1>
+<input type="text" name="" id="text" /> <button id="foise">Pro Foise</button>
+<button id="ak">Pro AK</button>
+<script>
+  const loc = window.location;
+  const url = loc.protocol === "https:" ? "wss://" : "ws://";
+  const ws = new WebSocket(url + loc.host + loc.pathname + "websocket");
+
+  ws.onopen = function() {
+    ws.send("Ree");
+  };
+
+  ws.onmessage = function(event) {
+    console.log(event.data);
+  };
+
+  const text = document.getElementById("text");
+  const foise = document.getElementById("foise");
+  const ak = document.getElementById("ak");
+
+  foise.onclick = function(event) {
+    ws.send(["foise", text.value]);
+  };
+
+  ak.onclick = function(event) {
+    ws.send(["ak", text.value]);
+  };
+</script>
