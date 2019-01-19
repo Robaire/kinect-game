@@ -40,6 +40,8 @@ class Game():
 
 	def update(self):
 
+		self._screen.fill((255, 255, 255)) # Sets the background color
+
 		hand_state = self.hand.get_state()
 
 		if hand_state is not None:
@@ -49,16 +51,17 @@ class Game():
 			y_pos *= self._screen.get_height()
 
 			if hand is "closed":
-				color = (0, 0, 255)
-			else:
-				color = (255, 0, 0)
 
-			self._screen.fill((255, 255, 255)) # Sets the background color
+				
 
-			self._screen.blit(self.hand.image, (int(x_pos), int(y_pos)))
-
-			#pygame.draw.circle(self._screen, color, (int(x_pos), int(y_pos)), 10, 0)
-			pygame.display.flip() # Updates the display
+				self._screen.blit(self.hand.image, (
+					int(x_pos - self.hand.image.get_width / 2), 
+					int(y_pos - self.hand.image.get_height / 2)
+					))
+			else: 
+				pygame.display.draw.circle(self._screen, (0, 0, 0), (int(x_pos), int(y_pos), 10, 0)
+				
+		pygame.display.flip() # Updates the display
 
 class Hand():
 
@@ -67,8 +70,12 @@ class Hand():
 		self._kinect = kinect  # Kinect Runtime Object
 		self._bodies = None  # Stores skeleton position data
 
-		self.image = pygame.image.load("../images/laurie.png")
-		self.image.convert()
+		self.image = pygame.image.load("../images/laurie.png")  # Load the image of Laurie's face
+		self.image.convert_alpha()  # Convert the image to a surface
+
+	
+	def get_image(self):
+		pass
 
 	def get_state(self):
 		""" Retrives the positional data of the players hand """
