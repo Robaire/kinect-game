@@ -50,7 +50,7 @@ class Game():
 
 		print(self.kinect_data.get_hand_data())
 		handData = self.kinect_data.get_hand_data()
-		pygame.draw.circle(self._frame_surface, (255, 0, 0), (handData[0], handData[1]), 8)
+		pygame.draw.circle(self._frame_surface, (255, 0, 0), (150, 150), 8)
 
 
 class KinectData():
