@@ -38,9 +38,10 @@ class runtime(object):
 					joints = body.joints 
 					joint_points = self._kinect.body_joints_to_color_space(joints)
 
-					print("x = ", joint_points[11].x)
-					print("y = ", joint_points[11].y)
-					print("test = ", 4)
+					print("x = ", joint_points[11].x) #get x
+					print("y = ", joint_points[11].y) #get y
+					
+					print(body.get_HandRightState) #get hand state
 	
 __main__ = "Kinect Trackinig"
 game = runtime();
