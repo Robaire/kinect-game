@@ -13,10 +13,15 @@ else:
 	import thread
 
 class Game():
-	def __init__(self):
+	def __init__(self, width, height, title):
+
+		# Window Height and Width
+		self.width = width
+		self.height = height
+
 		pygame.init()   # Initialize Pygame
-		self._screen = pygame.display.set_mode((1920, 1080), pygame.RESIZABLE) # Create display and set dimensions
-		pygame.display.set_caption("Kinect Game")  # Set the title of the window
+		self._screen = pygame.display.set_mode((self.width, self.height), pygame.RESIZABLE) # Create display and set dimensions
+		pygame.display.set_caption(title)  # Set the title of the window
 
         # Kinect runtime object
 		self.kinect_runtime = PyKinectRuntime.PyKinectRuntime(PyKinectV2.FrameSourceTypes_Color | PyKinectV2.FrameSourceTypes_Body)
@@ -44,7 +49,7 @@ class Game():
 		self._screen.fill((255, 255, 255)) # Sets the background color
 
 		## Draw the Building
-		self._screen.blit(self.building.get_image(), (500, 500))
+		self._screen.blit(self.building.get_image(), (int(self.width / 2 - self.building.width / 2), int(self.height - self.building.height)))
 
 		## Draw the Hand
 		hand_state = self.hand.get_state() # Gets the state of the hand
@@ -54,7 +59,7 @@ class Game():
 
 			if x_pos is not float("inf") and y_pos is not float("inf"):  # If you are too close to the kinect the positions go to infinity
 
-				x_pos *= self._screen.get_width() 
+				x_pos *= self._screen.get_width()
 				y_pos *= self._screen.get_height()
 
 				if hand is "closed":	
@@ -128,9 +133,9 @@ class Building():
 		self.width = int(self.image.get_width() / self.image.get_height() * height)
 
 	def get_image(self):
-		return pygame.transform.scale(self.image, (self.height, self.width))
+		return pygame.transform.scale(self.image, (self.width, self.height))
 
 __main__ = "Kinect Tracking"
 
-game = Game()
+game = Game(1920, 1080, "Dumb Kinect Game")
 game.game_loop()
