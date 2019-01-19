@@ -24,9 +24,6 @@ class Game():
 
 		pygame.display.set_caption("Kinect Game")  # Set the title of the window
 
-		# Loop until the user clicks the close button.
-		self._done = False
-
 		# Used to manage how fast the screen updates
 		self._clock = pygame.time.Clock()
 
@@ -36,7 +33,7 @@ class Game():
         # back buffer surface for getting Kinect color frames, 32bit color, width and height equal to the Kinect color frame size
 		self._frame_surface = pygame.Surface((self._kinect.color_frame_desc.Width, self._kinect.color_frame_desc.Height), 0, 32)
 
-		# Create a Kinect Data object to position information
+		# Create a Kinect Data object to get position information
 		self.kinect_data = KinectData(self._kinect)
 
 	def game_loop(self):
