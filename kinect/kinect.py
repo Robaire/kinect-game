@@ -149,7 +149,7 @@ class Lives():
 
 		pygame.font.init()
 		font_path = pygame.font.match_font(font, False, False)
-		self.font = pygame.font.Font(font_path, 20)
+		self.font = pygame.font.Font(font_path, 200)
 
 		self.lives = lives
 
