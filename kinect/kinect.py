@@ -71,7 +71,7 @@ class Hand():
 		self._kinect = kinect  # Kinect Runtime Object
 		self._bodies = None  # Stores skeleton position data
 
-		self.image = pygame.image.load("../images/laurie.png").convert_alpha  # Load the image of Laurie's face
+		self.image = pygame.image.load("../images/laurie.png").convert_alpha()  # Load the image of Laurie's face
 	
 	def get_image(self, size):
 		return pygame.transform.scale(self.image, (size, size))
