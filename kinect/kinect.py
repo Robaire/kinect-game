@@ -155,8 +155,8 @@ class Lives():
 
 		display = "Lives: " + str(self.lives)
 
-		self.width, self.height = pygame.font.size(display)
-		return pygame.font.render(display, True, (0, 0, 0), None)
+		self.width, self.height = pygame.font.Font.size(display)
+		return pygame.font.Font.render(display, True, (0, 0, 0), None)
 
 
 __main__ = "Kinect Tracking"
