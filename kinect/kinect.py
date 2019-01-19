@@ -48,6 +48,9 @@ class Game():
 	def update(self):
 		print(self.kinect_data.get_hand_data())
 
+		pygame.draw.circle(self._screen, (0, 0, 255), (100, 100), 20)
+		self._screen.display.flip() # Updates the screen
+
 
 class KinectData():
 
