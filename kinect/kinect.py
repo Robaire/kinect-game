@@ -105,7 +105,7 @@ class Hand():
 class Building():
 
 	def __init__(self):
-		self.image = pygame.image.load("../images/foise.jpg").convert()
+		self.image = pygame.image.load("../images/foisie.jpg").convert()
 		self.name = "foise"
 		self.lives = 3
 		self.score = 0
