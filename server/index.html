@@ -1,6 +1,44 @@
-<h1>REEE</h1>
-<input type="text" name="" id="text" /> <button id="foise">Pro Foise</button>
-<button id="ak">Pro AK</button>
+<!DOCTYPE html>
+<style>
+  h1, p{
+  text-align: center;
+}
+  h1{
+    font-family: Tahoma, Geneva, sans-serif;
+  }
+  button{
+    height: 28px;
+    width: 80px;
+    text-align: center;
+    font-size: 14px;
+    text-decoration: none;
+    background-color: #ff9999; 
+    display: inline-block;
+    border-radius: 12px;
+    margin-left: 5px;
+  }
+  #text{
+    height: 100%;
+    width: 200px;
+    padding: 5px;
+    margin: 8px 0;
+  }
+
+</style>
+<head>
+  <title>Battle of the Buildings</title>
+</head>
+<body>
+  <h1>Battle of the Buildings</h1>
+  <p>
+    <input type="text" name="" id="text" />
+  </p> 
+  <p>
+    <button id="foisie">Pro Foisie</button>
+    <button id="ak">Pro AK</button>
+  </p>
+</body>
+
 <script>
   const loc = window.location;
   const url = loc.protocol === "https:" ? "wss://" : "ws://";
@@ -26,3 +64,4 @@
     ws.send(["ak", text.value]);
   };
 </script>
+
