@@ -19,8 +19,7 @@ class Game():
 		# Set the width and height of the screen [width, height]
 		self._infoObject = pygame.display.Info()
 		self._screen = pygame.display.set_mode(
-			(self._infoObject.current_w >> 1, self._infoObject.current_h >> 1),
-			pygame.HWSURFACE|pygame.DOUBLEBUF|pygame.RESIZABLE, 32)
+			(self._infoObject.current_w >> 1, self._infoObject.current_h >> 1), pygame.RESIZABLE, 32)
 
 		pygame.display.set_caption("Kinect Game")  # Set the title of the window
 
@@ -46,9 +45,23 @@ class Game():
 			self.update()
 
 	def update(self):
-		self.kinect_data.get_hand_data()
-		#print(self.kinect_data.get_hand_data())
 
+		hand_data = self.kinect_data.get_hand_data()
+
+		if hand_data is not None:
+			x_pos, y_pos, hand = hand_data
+
+			x_pos *= self._screen.get_width() 
+			y_pos *= self._screen.get_height()
+
+			if hand is "open":
+				color = (0, 0, 255)
+			else:
+				color = (255, 0, 0)
+
+			self._screen.fill((255, 255, 255))
+			pygame.draw.circle(self._screen, color, (int(x_pos), int(y_pos)), 10, 0)
+			pygame.display.flip()
 
 class KinectData():
 
@@ -70,10 +83,18 @@ class KinectData():
 
 				joint_points = self._kinect.body_joints_to_color_space(body.joints)
 
-				print(self._kinect.color_frame_desc.Width)
-				print(self._kinect.color_frame_desc.Height)
+				x_position = joint_points[11].x / self._kinect.color_frame_desc.Width
+				y_position = joint_points[11].y / self._kinect.color_frame_desc.Height
 
-				return [joint_points[11].x, joint_points[11].y, body.hand_right_state]
+				hand_states = {
+					0 : "unkown",
+					1 : "not tracked",
+					2 : "open",
+					3 : "closed",
+					4 : "lasso"
+				}
+
+				return [x_position, y_position, hand_states[body.hand_right_state]]
 
 	
 __main__ = "Kinect Tracking"
