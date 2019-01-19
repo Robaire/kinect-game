@@ -47,6 +47,8 @@ class Game():
 			self.update()
 
 	def update(self):
+
+
 		print(self.kinect_data.get_hand_data())
 
 
@@ -62,15 +64,22 @@ class KinectData():
 		if self._kinect.has_new_body_frame():  # Check if there is a new body frame
 			self._bodies = self._kinect.get_last_body_frame()
 
-		if self._bodies is not None:  # If there is a body in the frame
-			for i in range(0, self._kinect.max_body_count):
-				body = self._bodies.bodies[i]
-				if not body.is_tracked: 
-					continue
+		# if self._bodies is not None:  # If there is a body in the frame
+		# 	for i in range(0, self._kinect.max_body_count):
+		# 		body = self._bodies.bodies[i]
+		# 		if not body.is_tracked: 
+		# 			continue
 
+		# 		joint_points = self._kinect.body_joints_to_color_space(body.joints)
+
+		# 		return [joint_points[11].x, joint_points[11].y, body.hand_right_state]
+
+		if self._bodies is not None:
+			body = self._bodies.bodies[0]
+			if body.is_tracked:
 				joint_points = self._kinect.body_joints_to_color_space(body.joints)
-
 				return [joint_points[11].x, joint_points[11].y, body.hand_right_state]
+
 	
 __main__ = "Kinect Tracking"
 
