@@ -55,7 +55,7 @@ class Game():
 
 			self._screen.fill((255, 255, 255)) # Sets the background color
 
-			pygame._screen.blit(self.hand.image, (int(x_pos), int(y_pos)))
+			self._screen.blit(self.hand.image, (int(x_pos), int(y_pos)))
 
 			#pygame.draw.circle(self._screen, color, (int(x_pos), int(y_pos)), 10, 0)
 			pygame.display.flip() # Updates the display
