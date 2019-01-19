@@ -52,7 +52,7 @@ class Game():
 	def update(self):
 
 		## Make the background white
-		self._screen.fill((255, 255, 255)) # Sets the background color
+		self._screen.fill((255, 255, 0)) # Sets the background color
 
 		## Draw the Building
 		self._screen.blit(self.building.get_image(), (int(self.width / 2 - self.building.width / 2), int(self.height - self.building.height)))
