@@ -50,14 +50,12 @@ class Game():
 			x_pos *= self._screen.get_width() 
 			y_pos *= self._screen.get_height()
 
-			if hand is "closed":
+			if hand is "closed":	
 
-				
-
-				self._screen.blit(self.hand.image, (
-					int(x_pos - self.hand.image.get_width / 2), 
-					int(y_pos - self.hand.image.get_height / 2)
-					))
+				# self._screen.blit(self.hand.image, (
+				# 	int(x_pos - self.hand.image.get_width / 2), 
+				# 	int(y_pos - self.hand.image.get_height / 2)
+				# 	))
 			else: 
 				pygame.display.draw.circle(self._screen, (0, 0, 0), (int(x_pos), int(y_pos), 10, 0)
 				
