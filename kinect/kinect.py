@@ -41,7 +41,8 @@ class runtime(object):
 					print("x = ", joint_points[11].x) #get x
 					print("y = ", joint_points[11].y) #get y
 					
-					print(body.HandRightState) #get hand state
+					RightHandState = body.HandRightState() #get hand state
+					print(RightHandState);
 	
 __main__ = "Kinect Trackinig"
 game = runtime();
