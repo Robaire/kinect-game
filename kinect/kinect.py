@@ -111,7 +111,7 @@ class Building():
 		self.score = 0
 
 	def get_image(self, height):
-		return pygame.transform.scale(self.image, (height, self.image.get_width() / self.image.get_height() * height) )
+		return pygame.transform.scale(self.image, (height, int(self.image.get_width() / self.image.get_height() * height)) )
 
 __main__ = "Kinect Tracking"
 
