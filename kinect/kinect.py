@@ -15,20 +15,13 @@ else:
 class Game():
 	def __init__(self):
 		pygame.init()   # Initialize Pygame
-
-		# Set the width and height of the screen [width, height]
-		self._infoObject = pygame.display.Info()
-		# self._screen = pygame.display.set_mode(
-		# 	(self._infoObject.current_w >> 1, self._infoObject.current_h >> 1), pygame.RESIZABLE, 32)
-
-		self._screen = pygame.display.set_mode((1920, 1080), pygame.RESIZABLE)
-
+		self._screen = pygame.display.set_mode((1920, 1080), pygame.RESIZABLE) # Create display and set dimensions
 		pygame.display.set_caption("Kinect Game")  # Set the title of the window
 
-        # Kinect runtime object, we want only color and body frames 
+        # Kinect runtime object
 		self.kinect_runtime = PyKinectRuntime.PyKinectRuntime(PyKinectV2.FrameSourceTypes_Color | PyKinectV2.FrameSourceTypes_Body)
 
-		# Create a Kinect Data object to get position information
+		# Hand Object
 		self.hand = Hand(self.kinect_runtime)
 
 	def game_loop(self):
@@ -44,22 +37,23 @@ class Game():
 
 		self._screen.fill((255, 255, 255)) # Sets the background color
 
-		hand_state = self.hand.get_state()
+		hand_state = self.hand.get_state() # Gets the state of the hand
 
-		if hand_state is not None:
+		if hand_state is not None:  # If no one is the in the view of the kinect hand_state is None
 			x_pos, y_pos, hand = hand_state
 
-			if x_pos is not float("inf") and y_pos is not float("inf"):
+			if x_pos is not float("inf") and y_pos is not float("inf"):  # If you are too close to the kinect the positions go to infinity
 
 				x_pos *= self._screen.get_width() 
 				y_pos *= self._screen.get_height()
 
 				if hand is "closed":	
 			
-					self._screen.blit(self.hand.image, (
-						int(x_pos - self.hand.image.get_width() / 2), 
-						int(y_pos - self.hand.image.get_height() / 2)
-						))
+					size = 50
+					self._screen.blit(
+						self.hand.get_image(size), 
+						(int(x_pos - size / 2), int(y_pos - size / 2))
+					)
 
 				else: 
 					pygame.draw.circle(self._screen, (0, 0, 0), (int(x_pos), int(y_pos)), 10, 0)
@@ -77,8 +71,8 @@ class Hand():
 		self.image.convert_alpha()  # Convert the image to a surface
 
 	
-	def get_image(self):
-		pass
+	def get_image(self, size):
+		return pygame.transform.scale(self.image, (size, size))
 
 	def get_state(self):
 		""" Retrives the positional data of the players hand """
