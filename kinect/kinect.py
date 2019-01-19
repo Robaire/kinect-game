@@ -20,7 +20,7 @@ class Game():
 		self.height = height
 
 		pygame.init()   # Initialize Pygame
-		self._screen = pygame.display.set_mode((self.width, self.height), pygame.RESIZABLE) # Create display and set dimensions
+		self._screen = pygame.display.set_mode((self.width, self.height), pygame.RESIZABLE|pygame.FULLSCREEN) # Create display and set dimensions
 		pygame.display.set_caption(title)  # Set the title of the window
 
         # Kinect runtime object
