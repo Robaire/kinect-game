@@ -20,6 +20,7 @@ class Game():
 		self.height = height
 
 		pygame.init()   # Initialize Pygame
+		pygame.font.init()
 		self._screen = pygame.display.set_mode((self.width, self.height), pygame.RESIZABLE|pygame.FULLSCREEN) # Create display and set dimensions
 		pygame.display.set_caption(title)  # Set the title of the window
 
@@ -34,14 +35,16 @@ class Game():
 		self.building = Building()
 		self.building.set_height(200)
 
+		# Life Counter
+		self.lives = Lives(3)
+
 	def game_loop(self):
 		while True:
 			for event in pygame.event.get():
 				if event.type == pygame.QUIT:
 					sys.exit()
 				if event.type == pygame.KEYDOWN:
-					if pygame.key.get_pressed()[5]:
-						sys.exit()
+					sys.exit()
 					
 				# Other events as needed
 			self.update()
@@ -53,6 +56,9 @@ class Game():
 
 		## Draw the Building
 		self._screen.blit(self.building.get_image(), (int(self.width / 2 - self.building.width / 2), int(self.height - self.building.height)))
+
+		## Draw the Lives Display
+		self._screen.blit(self.lives.get_image(), (100, 100))
 
 		## Draw the Hand
 		hand_state = self.hand.get_state() # Gets the state of the hand
@@ -137,6 +143,21 @@ class Building():
 
 	def get_image(self):
 		return pygame.transform.scale(self.image, (self.width, self.height))
+
+class Lives():
+	def __init__(self, lives=3):
+		self.lives = lives
+
+		self.width = 0
+		self.height = 0
+
+	def get_image(self):
+
+		display = "Lives: " + str(self.lives)
+
+		self.width, self.height = pygame.font.size(display)
+		return pygame.font.render(display, True, (0, 0, 0), None)
+
 
 __main__ = "Kinect Tracking"
 
