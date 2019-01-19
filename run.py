@@ -9,4 +9,3 @@ async def hello(uri):
 
 
 asyncio.get_event_loop().run_until_complete(hello("ws://localhost:8080/websocket"))
-
