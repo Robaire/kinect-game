@@ -73,10 +73,10 @@ class KinectData():
 				y_position = joint_points[11].y / self._kinect.color_frame_desc.Height
 
 				hand_states = {
-					0 : "unkown"
-					1 : "not tracked"
-					2 : "open"
-					3 : "closed"
+					0 : "unkown",
+					1 : "not tracked",
+					2 : "open",
+					3 : "closed",
 					4 : "lasso"
 				}
 
