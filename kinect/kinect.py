@@ -23,9 +23,11 @@ class Game():
 
 		# Hand Object
 		self.hand = Hand(self.kinect_runtime)
+		self.hand.set_height(200)
 
-		# Building
+		# Building Object
 		self.building = Building()
+		self.building.set_height(200)
 
 	def game_loop(self):
 		while True:
@@ -38,12 +40,16 @@ class Game():
 
 	def update(self):
 
+		## Make the background white
 		self._screen.fill((255, 255, 255)) # Sets the background color
-		self._screen.blit(self.building.get_image(200), (1080, 1920 / 2))
 
+		## Draw the Building
+		self._screen.blit(self.building.get_image(), (500, 500))
+
+		## Draw the Hand
 		hand_state = self.hand.get_state() # Gets the state of the hand
 
-		if hand_state is not None:  # If no one is the in the view of the kinect hand_state is None
+		if hand_state is not None:  # If no one is in the view of the kinect hand_state is None
 			x_pos, y_pos, hand = hand_state
 
 			if x_pos is not float("inf") and y_pos is not float("inf"):  # If you are too close to the kinect the positions go to infinity
@@ -53,15 +59,15 @@ class Game():
 
 				if hand is "closed":	
 			
-					size = 200
 					self._screen.blit(
-						self.hand.get_image(size), 
-						(int(x_pos - size / 2), int(y_pos - size / 2))
+						self.hand.get_image(), 
+						(int(x_pos - self.hand.width / 2), int(y_pos - self.hand.height / 2))
 					)
 
 				else: 
 					pygame.draw.circle(self._screen, (0, 0, 0), (int(x_pos), int(y_pos)), 10, 0)
 
+		## Update the Display
 		pygame.display.flip()
 
 class Hand():
@@ -72,10 +78,16 @@ class Hand():
 		self._bodies = None  # Stores skeleton position data
 
 		self.image = pygame.image.load("../images/laurie.png").convert_alpha()  # Load the image of Laurie's face
-	
-	def get_image(self, size):
-		return pygame.transform.scale(self.image, (size, size))
+		self.height = self.image.get_height()
+		self.width = self.image.get_width()
 
+	def set_height(self, height):
+		self.height = height
+		self.width = int(self.image.get_width() / self.image.get_height() * height)
+
+	def get_image(self):
+		return pygame.transform.scale(self.image, (self.height, self.width))
+	
 	def get_state(self):
 		""" Retrives the positional data of the players hand """
 		if self._kinect.has_new_body_frame():  # Check if there is a new body frame
@@ -105,13 +117,18 @@ class Hand():
 class Building():
 
 	def __init__(self):
-		self.image = pygame.image.load("../images/foisie.jpg").convert()
 		self.name = "foise"
-		self.lives = 3
-		self.score = 0
 
-	def get_image(self, height):
-		return pygame.transform.scale(self.image, (height, int(self.image.get_width() / self.image.get_height() * height)) )
+		self.image = pygame.image.load("../images/foisie.jpg").convert()
+		self.height = self.image.get_height()
+		self.width = self.image.get_width()
+
+	def set_height(self, height):
+		self.height = height
+		self.width = int(self.image.get_width() / self.image.get_height() * height)
+
+	def get_image(self):
+		return pygame.transform.scale(self.image, (self.height, self.width))
 
 __main__ = "Kinect Tracking"
 
