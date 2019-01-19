@@ -46,11 +46,8 @@ class Game():
 			self.update()
 
 	def update(self):
-
-
-		print(self.kinect_data.get_hand_data())
-		handData = self.kinect_data.get_hand_data()
-		pygame.draw.circle(self._frame_surface, (255, 0, 0), (handData[0], handData[1]), 8)
+		self.kinect_data.get_hand_data()
+		#print(self.kinect_data.get_hand_data())
 
 
 class KinectData():
@@ -72,6 +69,9 @@ class KinectData():
 					continue
 
 				joint_points = self._kinect.body_joints_to_color_space(body.joints)
+
+				print(self._kinect.color_frame_desc.Width)
+				print(self._kinect.color_frame_desc.Height)
 
 				return [joint_points[11].x, joint_points[11].y, body.hand_right_state]
 
