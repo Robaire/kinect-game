@@ -210,12 +210,14 @@ class Projectile():
 		font_path = pygame.font.match_font(font, False, False)
 		self.font = pygame.font.Font(font_path, 50)
 
-
+		self.text = text
+		self.group = group
 		self.velocity = velocity
 
-
 	def get_image(self):
-		pass
+		
+		self.width, self.height = self.font.size(self.text)
+		return self.font.render(self.text, True, (0,0,0), None)
 
 __main__ = "Kinect Tracking"
 
