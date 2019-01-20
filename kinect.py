@@ -183,10 +183,7 @@ class Game():
 
 			if (x_pos is not float('inf')) and (y_pos is not float('inf')) and (x_pos is not float('-inf')) and (y_pos is not float('-inf')):  # If you are too close to the kinect the positions go to infinity
 			
-				if x_pos > 0.5:
-					x_pos *= 1.2
-				else:
-					x_pos *= 0.8
+				
 
 				x_pos *= self._screen.get_width()
 				y_pos *= self._screen.get_height() 
@@ -236,8 +233,8 @@ class Hand():
 
 				joint_points = self._kinect.body_joints_to_color_space(body.joints)
 
-				x_position = joint_points[11].x / self._kinect.color_frame_desc.Width
-				y_position = joint_points[11].y / self._kinect.color_frame_desc.Height
+				x_position = joint_points[11].x / (self._kinect.color_frame_desc.Width * 0.8)
+				y_position = joint_points[11].y / (self._kinect.color_frame_desc.Height * 0.8)
 
 				hand_states = {
 					0 : "unkown",
