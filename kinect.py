@@ -87,7 +87,7 @@ class Game():
 					
 					# Check if there are any lives remaining
 					if self.lives.lives == 0:
-						self.exit()
+						#self.exit()
 					
 					# Check if any projectiles have hit the building
 					remaining_projectiles = []
