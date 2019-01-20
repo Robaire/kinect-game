@@ -5,7 +5,7 @@ import queue
 
 messages = queue.Queue()
 uri = "ws://trevorlaptop.dyn.wpi.edu/websocket"
-t
+t = 0
 
 async def receiver():
     async with websockets.connect(uri) as websocket:
