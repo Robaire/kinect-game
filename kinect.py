@@ -241,7 +241,7 @@ class Hand():
 				x_position = .5 + ((x_position - .5) * 1.66)
 
 				x_alt = 2 * x_alt - 1
-				x_alt = sqrt(abs(x_alt)) * sign(x_alt)
+				x_alt = x_alt
 				x_alt = (x_alt + 1) / 2
 
 				x_position = float(x_alt)
