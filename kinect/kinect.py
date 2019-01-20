@@ -63,14 +63,17 @@ class Game():
 					sys.exit()
 				if event.type == pygame.USEREVENT:
 
+					def hit_building(proj):
+							if proj.x_pos > self.width / 2 - self.building.width / 2 - proj.width and proj.x_pos < self.width / 2 + self.building.width / 2:
+								if proj.y_pos > self.height - self.building.height - proj.height:
+									return True
+							return False
+
+					filter(hit_building, self.projectiles)
+
 					# Go through all the projectiles and check if they hit anything and move them
 					for proj in self.projectiles:
-
-						## Check for collisions
-						# Building Collisions
-						if proj.x_pos > self.width / 2 - self.building.width / 2 - proj.width and proj.x_pos < self.width / 2 + self.building.width / 2:
-							if proj.y_pos > self.height - self.building.height - proj.height:
-								proj.text = str(uniform(0,1))
+					
 						proj.move() # Move
 
 					
