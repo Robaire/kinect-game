@@ -237,10 +237,10 @@ class Hand():
 				y_position = joint_points[11].y / self._kinect.color_frame_desc.Height
 
 				if x_position > .5:
-					x_position = x_position + ((x_position - .5) * 1.5)
+					x_position = .5 + ((x_position - .5) * 1.5)
 
 				if x_position < .5:
-					x_position = x_position - (x_position * 1.5)
+					x_position = .5 - (x_position * 1.5)
 
 				hand_states = {
 					0 : "unkown",
