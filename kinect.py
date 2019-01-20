@@ -13,7 +13,7 @@ else:
 	import thread
 
 from random import uniform
-from math import sin, cos, sqrt
+from math import sin, cos, sqrt, fabs
 
 import run
 
@@ -83,7 +83,7 @@ class Game():
 							else:
 								group = "atwater_kent"
 
-							self.projectiles.append(Projectile(self.width, self.height, "comicsansms", split_message[1], group, 3))
+							self.projectiles.append(Projectile(self.width, self.height, "comicsansms", split_message[1], group, 2))
 					
 					# Check if there are any lives remaining
 					#if self.lives.lives == 0:
@@ -241,9 +241,9 @@ class Hand():
 				x_position = .5 + ((x_position - .5) * 1.66)
 
 				x_alt = 2 * x_alt - 1
-				x_alt = x_alt
+				x_alt = sqrt(fabs(x_alt)) * (fabs(x_alt) / x_alt)
 				x_alt = (x_alt + 1) / 2
-
+g
 				x_position = float(x_alt)
 				
 				hand_states = {
@@ -269,7 +269,7 @@ class Building():
 	def set_height(self, height):
 		self.height = height
 		self.width = int(self.image.get_width() / self.image.get_height() * height)
-
+		
 	def get_image(self):
 		return pygame.transform.scale(self.image, (self.width, self.height))
 
@@ -339,7 +339,7 @@ class Projectile():
 		if self.group == "foisie":
 			color = (0, 0, 153)
 		else:
-			color =(255, 0, 0)
+			color = (255, 0, 0)
 
 		return self.font.render(self.text, True, color, None)
 
