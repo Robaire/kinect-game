@@ -82,7 +82,7 @@ class Game():
 							else:
 								group = "atwater_kent"
 
-							self.projectiles.append(Projectile(self.width, self.height, "comicsansms", message[1], group, 3))
+							self.projectiles.append(Projectile(self.width, self.height, "comicsansms", split_message[1], group, 3))
 					
 					# Check if there are any lives remaining
 					if self.lives.lives == 0:
