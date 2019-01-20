@@ -5,7 +5,6 @@ import queue
 
 messages = queue.Queue()
 uri = "ws://kinectmeme.com/websocket"
-the_thread = None
 
 async def receiver():
     async with websockets.connect(uri) as websocket:
@@ -18,14 +17,9 @@ def loop_in_thread(loop):
 
 def run_web_socket():
     loop = asyncio.get_event_loop()
-    the_thread = threading.Thread(target=loop_in_thread, args=(loop,))
-    the_thread.start()
-    return the_thread
-
-def exit_web_socket():
-    the_thread.exit()
-    
-
+    t = threading.Thread(target=loop_in_thread, args=(loop,))
+    t.start()
+    return t
 
 ######################################### ROBAIRE PUT THIS IN THE GAME
 #run_web_socket()

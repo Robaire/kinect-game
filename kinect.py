@@ -54,12 +54,12 @@ class Game():
 		]
 
 	def exit(self):
-		self.the_thread.join(10)
+		self.socket_thread.join(10) # This will always timeout
 		sys.exit()
 
 	def game_loop(self):
 
-		self.the_thread = run.run_web_socket()
+		self.socket_thread = run.run_web_socket()
 		pygame.time.set_timer(pygame.USEREVENT, 10) # Set up a timer to move the projectiles
 
 		while True:
@@ -72,8 +72,15 @@ class Game():
 
 					# Check if any messages need to be added to the game
 					if not run.messages.empty():
-						self.projectiles.append(Projectile(self.width, self.height, "comicsansms", run.messages.get(), "foise", 3))
-						#print(run.messages.get())
+
+						# Parse the message
+						message = run.messages.get().split(",", 1)
+						if message[0] == "foisie":
+							group = "foisie"
+						else:
+							group = "atwater_kent"
+							
+						self.projectiles.append(Projectile(self.width, self.height, "comicsansms", message[1], group, 3))
 					
 					# Check if there are any lives remaining
 					if self.lives.lives == 0:
