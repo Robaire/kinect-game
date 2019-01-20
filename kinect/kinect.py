@@ -44,10 +44,17 @@ class Game():
 		# Score Counter
 		self.score = Score("comicsansms")
 
-		# Test Projective
-		self.projectile = Projectile("comicsansms", "AK is outdated!", "foisie", 100)
+		# List of Projectiles
+		self.projectiles = [
+			Projectile("comicsansms", "Comment 1", "foisie", 100),
+			Projectile("comicsansms", "Comment 2", "foisie", 100),
+			Projectile("comicsansms", "Comment 3", "foisie", 100)
+		]
 
 	def game_loop(self):
+
+		pygame.timer.set_timer(pygame.USEREVENT, 50) # Set up a timer to move the projectiles
+
 		while True:
 			for event in pygame.event.get():
 				if event.type == pygame.QUIT:
@@ -94,7 +101,8 @@ class Game():
 					pygame.draw.circle(self._screen, (0, 0, 0), (int(x_pos), int(y_pos)), 10, 0)
 
 		## Draw the Projectiles
-		self._screen.blit(self.projectile.get_image(), (int(self.width / 2 + self.projectile.x_pos), int(self.height / 2 + self.projectile.y_pos)))
+		for projectile in self.projectiles:
+			self._screen.blit(projectile.get_image(), (int(self.width / 2 + projectile.x_pos), int(self.height / 2 + projectile.y_pos)))
 
 		## Update the Display
 		pygame.display.flip()
@@ -203,8 +211,8 @@ class Projectile():
 		theta = uniform(0, 6.28)
 		radius = 1000
 
-		self.x_pos = radius * cos(theta)
-		self.y_pos = -1 * abs(radius * sin(theta))
+		self.x_pos = radius * cos(theta) # Relative to the center
+		self.y_pos = -1 * abs(radius * sin(theta)) # Relative to the center
 
 		pygame.font.init()
 		font_path = pygame.font.match_font(font, False, False)
