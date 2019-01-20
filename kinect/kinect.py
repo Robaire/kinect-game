@@ -99,14 +99,15 @@ class Game():
 		hand_state = self.hand.get_state() # Gets the state of the hand
 
 		if hand_state is not None:  # If no one is in the view of the kinect hand_state is None
-			x_pos, y_pos, hand = hand_state
+			x_pos, y_pos, hand, confidence= hand_state
 
 			if (x_pos is not float("inf")) and (y_pos is not float("inf")) and (x_pos is not float("-inf")) and (y_pos is not float("-inf")):  # If you are too close to the kinect the positions go to infinity
 
 				x_pos *= self._screen.get_width()
 				y_pos *= self._screen.get_height() 
 
-				if hand is "closed":	
+
+				if (hand is "closed" && confidence == 1:	
 			
 					self._screen.blit(
 						self.hand.get_image(), 
@@ -162,7 +163,7 @@ class Hand():
 					4 : "lasso"
 				}
 
-				return [x_position, y_position, hand_states[body.hand_right_state]]
+				return [x_position, y_position, hand_states[body.hand_right_state], body.hand_right_confidence]
 
 class Building():
 
