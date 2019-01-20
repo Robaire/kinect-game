@@ -243,7 +243,7 @@ class Hand():
 				x_alt = 2 * x_alt - 1
 				x_alt = sqrt(fabs(x_alt)) * (fabs(x_alt) / x_alt)
 				x_alt = (x_alt + 1) / 2
-g
+
 				x_position = float(x_alt)
 				
 				hand_states = {
@@ -269,7 +269,7 @@ class Building():
 	def set_height(self, height):
 		self.height = height
 		self.width = int(self.image.get_width() / self.image.get_height() * height)
-		
+
 	def get_image(self):
 		return pygame.transform.scale(self.image, (self.width, self.height))
 
