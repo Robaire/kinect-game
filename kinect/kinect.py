@@ -119,12 +119,13 @@ class Game():
 									(proj.y_pos < y_pos + self.hand.height)
 									):
 										# Score the Projectile
-										proj.text = str(uniform(0,1))
+										if proj.text == "atwater_kent":
+											self.score.score += 1
+										#proj.text = str(uniform(0,1))
 									else:
-										0
-										#remaining_projectiles.append(proj)
+										remaining_projectiles.append(proj)
 
-					#self.projectiles = remaining_projectiles
+					self.projectiles = remaining_projectiles
 
 					# Go through all the projectiles and move them
 					for proj in self.projectiles:
