@@ -65,7 +65,7 @@ class Game():
 					# Change the positions of all the projectiles
 
 					for proj in self.projectiles:
-						proj.move()
+						proj.move(self.width, self.height)
 					
 				# Other events as needed
 			self.draw()
