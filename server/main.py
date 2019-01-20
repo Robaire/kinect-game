@@ -4,7 +4,7 @@ import tornado.web
 import tornado.websocket
 
 root = os.path.dirname(__file__)
-port = 8080
+port = 80
 
 
 class SocketHandler(tornado.websocket.WebSocketHandler):
