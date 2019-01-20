@@ -202,6 +202,9 @@ class Game():
 			self._screen.blit(proj.get_image(), (int(proj.x_pos), int(proj.y_pos)))
 
 	def game_over(self):
+
+		self._screen.fill((255, 255, 255)) # Sets the background color
+
 		background = pygame.image.load("./images/background.jpg").convert()
 		self._screen.blit(background, (0,0))
 
