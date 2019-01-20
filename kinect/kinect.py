@@ -108,7 +108,7 @@ class Game():
 
 		## Draw the Projectiles
 		for projectile in self.projectiles:
-			self._screen.blit(projectile.get_image(), (int(self.width / 2 + projectile.x_pos), int(self.height / 2 + projectile.y_pos)))
+			self._screen.blit(projectile.get_image(), (int(projectile.x_pos), int(projectile.y_pos)))
 
 class Hand():
 
