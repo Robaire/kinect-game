@@ -6,7 +6,7 @@ import queue
 messages = queue.Queue()
 
 
-uri = "ws://revorlaptop.dyn.wpi.edu:80"
+uri = "ws://trevorlaptop.dyn.wpi.edu:80"
 
 
 async def receiver():
