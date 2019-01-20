@@ -223,6 +223,12 @@ class Game():
 
 		self._screen.blit(font.render(text, True, (0,0,0), None), ((self.width / 2  - width / 2), 100))
 
+		atwater = pygame.image.load("./images/ak.jpg").convert()
+		width = atwater.get_width()
+		height = atwater.get_height()
+
+		self._screen.blit(atwater, (self.width / 2 - width /2, self.height - height))
+
 		pygame.display.flip()
 
 		self.socket_thread.join(10)
