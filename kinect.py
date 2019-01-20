@@ -71,7 +71,7 @@ class Game():
 				if event.type == pygame.USEREVENT:
 
 					# Check if any messages need to be added to the game
-					if not run.messages.empty():
+					if not run.messages.empty() and len(self.projectiles) < 7:
 
 						# Parse the message
 						split_message = run.messages.get().split(",", 1)
@@ -182,8 +182,6 @@ class Game():
 			x_pos, y_pos, hand, confidence = hand_state
 
 			if (x_pos is not float('inf')) and (y_pos is not float('inf')) and (x_pos is not float('-inf')) and (y_pos is not float('-inf')):  # If you are too close to the kinect the positions go to infinity
-			
-				
 
 				x_pos *= self._screen.get_width()
 				y_pos *= self._screen.get_height() 
@@ -235,8 +233,6 @@ class Hand():
 
 				x_position = joint_points[11].x / self._kinect.color_frame_desc.Width
 				y_position = joint_points[11].y / self._kinect.color_frame_desc.Height
-
-				# x_position = .5 + (x_position) * 2
 
 				x_alt = x_position
 
