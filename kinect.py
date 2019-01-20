@@ -238,10 +238,10 @@ class Hand():
 
 				print(x_position)
 				if x_position > .5:
-					x_position = .5 + ((x_position - .5) * 1.25)
+					x_position = .5 + ((x_position - .5) * 1.5)
 
 				if x_position < .5:
-					x_position = .5 - ((.5 - x_position) * 1.25)
+					x_position = .5 - ((.5 - x_position) * 1.5)
 
 				
 				hand_states = {
