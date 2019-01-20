@@ -232,6 +232,7 @@ class Projectile():
 		self.group = group
 
 		self.display_width = display_width
+		self.display_height = display_height
 
 		self.width = 0
 		self.height = 0
