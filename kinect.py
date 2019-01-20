@@ -74,12 +74,15 @@ class Game():
 					if not run.messages.empty():
 
 						# Parse the message
-						group, message = run.messages.get().split(",", 1)
+						split_message = run.messages.get().split(",", 1)
 
-						if group != "foisie":
-							group = "atwater_kent"
+						if len(split_message) == 2:
+							if split_message[0] == "foisie":
+								group = "foisie"
+							else:
+								group = "atwater_kent"
 
-						self.projectiles.append(Projectile(self.width, self.height, "comicsansms", message, group, 3))
+							self.projectiles.append(Projectile(self.width, self.height, "comicsansms", message[1], group, 3))
 					
 					# Check if there are any lives remaining
 					if self.lives.lives == 0:
