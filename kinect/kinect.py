@@ -93,6 +93,10 @@ class Game():
 
 			if x_pos is not float("inf") and y_pos is not float("inf"):  # If you are too close to the kinect the positions go to infinity
 
+
+				x_pos *= 1.5  # Calibration
+				y_pos *= 1.5  # Calibration
+
 				x_pos *= self._screen.get_width()
 				y_pos *= self._screen.get_height()
 
@@ -225,8 +229,10 @@ class Projectile():
 
 		self.text = text
 		self.group = group
-		
 
+		self.width = 0
+		self.height = 0
+		
 	def get_image(self):
 		
 		self.width, self.height = self.font.size(self.text)
@@ -235,9 +241,9 @@ class Projectile():
 	def move(self, width, height):
 
 		# Check side walls
-		if self.x_pos < 0 or self.x_pos > width:
+		if self.x_pos < 0 or self.x_pos > width - self.width:
 			self.x_vel *= -1
-		if self.y_pos < 0 or self.y_pos > height:
+		if self.y_pos < 0 or self.y_pos > height - self.height:
 			self.y_vel *= -1
 
 		self.x_pos += self.x_vel
