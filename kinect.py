@@ -59,6 +59,8 @@ class Game():
 
 	def game_loop(self):
 
+		self.background = pygame.image.load("./images/background.jpg").convert()
+
 		self.socket_thread = run.run_web_socket()
 		pygame.time.set_timer(pygame.USEREVENT, 10) # Set up a timer to move the projectiles
 
@@ -165,6 +167,8 @@ class Game():
 
 		## Make the background white
 		self._screen.fill((255, 255, 255)) # Sets the background color
+
+		self._screen.blit(self.background, (0,0))
 
 		## Draw the Building
 		self._screen.blit(self.building.get_image(), (int(self.width / 2 - self.building.width / 2), int(self.height - self.building.height)))
