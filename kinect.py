@@ -242,6 +242,7 @@ class Hand():
 				if x_position < .5:
 					x_position = .5 - (x_position * 1.5)
 
+				print(x_position)
 				hand_states = {
 					0 : "unkown",
 					1 : "not tracked",
