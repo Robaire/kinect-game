@@ -75,6 +75,7 @@ class Game():
 
 						# Parse the message
 						split_message = run.messages.get().split(",", 1)
+						print(split_message)
 
 						if len(split_message) == 2:
 							if split_message[0] == "foisie":
