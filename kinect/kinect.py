@@ -93,14 +93,8 @@ class Game():
 
 			if x_pos is not float("inf") and y_pos is not float("inf"):  # If you are too close to the kinect the positions go to infinity
 
-
-				x_pos -= 0.5  #
-				y_pos -= 0.5 
-				x_pos *= 1.5  # Calibration
-				y_pos *= 1.5  # Calibration
-
-				x_pos = x_pos * self._screen.get_width() / 2 + self._screen.get_width()
-				y_pos = y_pos * self._screen.get_height() / 2 + self._screen.get_height()
+				x_pos *= self._screen.get_width() / 2
+				y_pos *= self._screen.get_height() / 2 
 
 				if hand is "closed":	
 			
