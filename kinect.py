@@ -15,7 +15,7 @@ else:
 from random import uniform
 from math import sin, cos
 
-import run
+import sockets
 
 class Game():
 	def __init__(self, width, height, title):
@@ -55,7 +55,7 @@ class Game():
 
 	def game_loop(self):
 
-		run.run_web_socket()
+		sockets.run_web_socket()
 		pygame.time.set_timer(pygame.USEREVENT, 10) # Set up a timer to move the projectiles
 
 		while True:
@@ -66,8 +66,8 @@ class Game():
 					sys.exit()
 				if event.type == pygame.USEREVENT:
 
-					if not run.messages.empty:
-						print(run.messages.get())
+					if not sockets.messages.empty:
+						print(sockets.messages.get())
 					
 					# Check if there are any lives remaining
 					if self.lives.lives == 0:
