@@ -4,8 +4,13 @@ import threading
 import queue
 
 messages = queue.Queue()
+<<<<<<< HEAD
 uri = "ws://kinectmeme.com/websocket"
 t
+=======
+uri = "ws://trevorlaptop.dyn.wpi.edu/websocket"
+t = 0
+>>>>>>> 3bba0f3d0c719aab4f4ade34fd6c0668f9a7cb1d
 
 async def receiver():
     async with websockets.connect(uri) as websocket:
