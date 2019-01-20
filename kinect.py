@@ -236,9 +236,15 @@ class Hand():
 				x_position = joint_points[11].x / self._kinect.color_frame_desc.Width
 				y_position = joint_points[11].y / self._kinect.color_frame_desc.Height
 
+				x_alt = x_position
 			
 				x_position = .5 + ((x_position - .5) * 1.66)
 
+				x_alt = 2 * x_alt - 1
+				x_alt = x_alt ** (1. / 3)
+				x_alt = (x_alt + 1) / 2
+
+				x_position = x_alt
 				
 				hand_states = {
 					0 : "unkown",
