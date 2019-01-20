@@ -65,6 +65,9 @@ class Game():
 				if event.type == pygame.KEYDOWN:
 					sys.exit()
 				if event.type == pygame.USEREVENT:
+
+					if not run.messages.empty():
+						print(run.messages.get())
 					
 					# Check if there are any lives remaining
 					if self.lives.lives == 0:
