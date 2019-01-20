@@ -70,7 +70,7 @@ class Game():
 						# Building Collisions
 						if proj.x_pos > self.width / 2 - self.building.width / 2 - proj.width and proj.x_pos < self.width / 2 + self.building.width / 2:
 							if proj.y_pos > self.height - self.building.height - proj.height:
-								proj.text = uniform(0,1)
+								proj.text = str(uniform(0,1))
 						proj.move() # Move
 
 					
