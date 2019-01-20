@@ -176,6 +176,14 @@ class Game():
 		## Draw the Score Display
 		self._screen.blit(self.score.get_image(), (int(self.width - self.score.width), 0))
 
+		## Draw the URL
+		font_path = pygame.font.match_font("comicsansms")
+		font = pygame.font.Font(font_path, 70)
+		width, height = font.size("kinectmeme.com")
+		url = font.render.("kinectmeme.com", True, (0,0,0), None)
+		self._screen.blit(url, (self.height - height, self.width - width))
+		self._screen.blit(url, (self.height - height, 0))
+
 		## Draw the Hand
 		hand_state = self.hand.get_state() # Gets the state of the hand
 
@@ -203,6 +211,8 @@ class Game():
 
 	def game_over(self):
 
+		self.socket_thread.join(10)
+
 		self._screen.fill((255, 255, 255)) # Sets the background color
 
 		background = pygame.image.load("./images/background.jpg").convert()
@@ -210,7 +220,7 @@ class Game():
 
 		text = "Game Over"
 		font_path = pygame.font.match_font("comicsansms", False, False)
-		font = pygame.font.Font(font_path, 900)
+		font = pygame.font.Font(font_path, 250)
 		width, height = font.size(text)
 
 		self._screen.blit(font.render(text, True, (0,0,0), None), ((self.width / 2  - width / 2), 100))
@@ -219,8 +229,6 @@ class Game():
 
 		while(True):
 			pygame.time.delay(500)
-		
-
 		
 
 class Hand():
