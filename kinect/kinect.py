@@ -46,9 +46,9 @@ class Game():
 
 		# List of Projectiles
 		self.projectiles = [
-			Projectile("comicsansms", "Comment 1", "foisie", 100),
-			Projectile("comicsansms", "Comment 2", "foisie", 100),
-			Projectile("comicsansms", "Comment 3", "foisie", 100)
+			Projectile("comicsansms", "Comment 1", "foisie", 10),
+			Projectile("comicsansms", "Comment 2", "foisie", 10),
+			Projectile("comicsansms", "Comment 3", "foisie", 10)
 		]
 
 	def game_loop(self):
@@ -61,6 +61,11 @@ class Game():
 					sys.exit()
 				if event.type == pygame.KEYDOWN:
 					sys.exit()
+				if event.type == pygame.USEREVENT:
+					# Change the positions of all the projectiles
+
+					for proj in self.projectiles:
+						proj.move()
 					
 				# Other events as needed
 			self.update()
@@ -208,11 +213,11 @@ class Score():
 class Projectile():
 	def __init__(self, font, text, group, velocity):
 
-		theta = uniform(0, 6.28)
-		radius = 500
+		self.theta = uniform(0, 6.28)
+		radius = 700
 
-		self.x_pos = radius * cos(theta) # Relative to the center
-		self.y_pos = -1 * abs(radius * sin(theta)) # Relative to the center
+		self.x_pos = radius * cos(self.theta) # Relative to the center
+		self.y_pos = -1 * abs(radius * sin(self.theta)) # Relative to the center
 
 		pygame.font.init()
 		font_path = pygame.font.match_font(font, False, False)
@@ -226,6 +231,11 @@ class Projectile():
 		
 		self.width, self.height = self.font.size(self.text)
 		return self.font.render(self.text, True, (0,0,0), None)
+
+	def move(self):
+		self.x_pos = self.x_pos + self.velocity * cos(self.theta)
+		self.y_pos = self.y_pos + abs(self.velocity * sin(self.theta))
+
 
 __main__ = "Kinect Tracking"
 
