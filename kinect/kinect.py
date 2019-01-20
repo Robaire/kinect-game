@@ -63,13 +63,13 @@ class Game():
 					sys.exit()
 				if event.type == pygame.USEREVENT:
 
-					def hit_building(proj):
+					def not_hit_building(proj):
 							if proj.x_pos > self.width / 2 - self.building.width / 2 - proj.width and proj.x_pos < self.width / 2 + self.building.width / 2:
 								if proj.y_pos > self.height - self.building.height - proj.height:
 									return False
 							return True
 
-					self.projectiles = filter(hit_building, self.projectiles)
+					self.projectiles = filter(not_hit_building(proj), self.projectiles)
 
 					# Go through all the projectiles and check if they hit anything and move them
 					for proj in self.projectiles:
@@ -263,4 +263,5 @@ class Projectile():
 __main__ = "Kinect Tracking"
 
 game = Game(1920, 1080, "Dumb Kinect Game")
+pygame.time.delay(3000)
 game.game_loop()
