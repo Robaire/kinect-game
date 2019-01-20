@@ -58,7 +58,7 @@ class Game():
 		self._screen.blit(self.building.get_image(), (int(self.width / 2 - self.building.width / 2), int(self.height - self.building.height)))
 
 		## Draw the Lives Display
-		self._screen.blit(self.lives.get_image(), (100, 100))
+		self._screen.blit(self.lives.get_image(), (0, 0))
 
 		## Draw the Hand
 		hand_state = self.hand.get_state() # Gets the state of the hand
@@ -149,7 +149,7 @@ class Lives():
 
 		pygame.font.init()
 		font_path = pygame.font.match_font(font, False, False)
-		self.font = pygame.font.Font(font_path, 200)
+		self.font = pygame.font.Font(font_path, 100)
 
 		self.lives = lives
 
