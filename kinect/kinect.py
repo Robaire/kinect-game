@@ -46,9 +46,9 @@ class Game():
 
 		# List of Projectiles
 		self.projectiles = [
-			Projectile(self.width, self.height, "comicsansms", "Comment 1", "foisie", 5),
-			Projectile(self.width, self.height, "comicsansms", "Comment 2", "foisie", 5),
-			Projectile(self.width, self.height, "comicsansms", "Comment 3", "foisie", 5)
+			Projectile(self.width, self.height, "comicsansms", "Foisie is great!", "foisie", 5),
+			Projectile(self.width, self.height, "comicsansms", "Propaganda Screen", "atwater_kent", 5),
+			Projectile(self.width, self.height, "comicsansms", "But pretzels.", "foisie", 5)
 		]
 
 	def game_loop(self):
