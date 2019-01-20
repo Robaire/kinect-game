@@ -12,6 +12,8 @@ if sys.hexversion >= 0x03000000:
 else:
 	import thread
 
+from random import randint
+
 class Game():
 	def __init__(self, width, height, title):
 
@@ -183,10 +185,25 @@ class Score():
 
 	def get_image(self):
 
-		display = "Score: " + str(self.score)
+		display = "Score: " + str(self.score) + " "
 
 		self.width, self.height = self.font.size(display)
 		return self.font.render(display, True, (0,0,0), None)
+
+class Projectile():
+	def __init__(self, font, text, group, velocity):
+
+		theta = randint(0, 360)
+		
+		pygame.font.init()
+		font_path = pygame.font.match_font(font, False, False)
+		self.font = pygame.font.Font(font_path, 50)
+
+
+		self.velocity = velocity
+
+
+	def get_image(self)
 
 __main__ = "Kinect Tracking"
 

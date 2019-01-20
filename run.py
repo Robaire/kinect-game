@@ -3,7 +3,7 @@ import websockets
 import threading
 import queue
 
-q = queue.Queue()
+messages = queue.Queue()
 
 
 uri = "ws://localhost:8080/websocket"
@@ -12,7 +12,7 @@ uri = "ws://localhost:8080/websocket"
 async def receiver():
     async with websockets.connect(uri) as websocket:
         while True:
-            q.put(await websocket.recv())
+            messages.put(await websocket.recv())
 
 
 def loop_in_thread(loop):
@@ -29,7 +29,7 @@ def run_web_socket():
 ######################################### ROBAIRE PUT THIS IN THE GAME
 run_web_socket()
 while True:
-    if not q.empty():
-        print(q.get())
+    if not messages.empty():
+        print(messages.get())
 
 ###########################################
