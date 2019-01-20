@@ -38,7 +38,7 @@ class Game():
 
 		# Building Object
 		self.building = Building()
-		self.building.set_height(200)
+		self.building.set_height(220)
 
 		# Life Counter
 		self.lives = Lives(3, "comicsansms")
