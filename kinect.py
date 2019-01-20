@@ -347,7 +347,7 @@ class Projectile():
 		unscaled = self.font.render(self.text, True, color, None)
 
 		if self.width > self.max_width:
-			self.height = self.max_width / self.width * self.height
+			self.height = int(self.max_width / self.width * self.height)
 			self.width = self.max_width
 			return pygame.transform.scale(unscaled, (self.max_width, self.height))
 		
