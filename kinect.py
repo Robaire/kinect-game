@@ -211,7 +211,7 @@ class Game():
 		text = "Game Over"
 		font_path = pygame.font.match_font("comicsansms", False, False)
 		font = pygame.font.Font(font_path, 100)
-		width = font.size(text)
+		width, height = font.size(text)
 
 		self._screen.blit(font.render(text, True, (0,0,0), None), ((self.width / 2  - width / 2), 700))
 
