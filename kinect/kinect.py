@@ -94,7 +94,7 @@ class Game():
 					pygame.draw.circle(self._screen, (0, 0, 0), (int(x_pos), int(y_pos)), 10, 0)
 
 		## Draw the Projectiles
-		self._screen.blit(self.projectile.get_image(), (0, 0, 0), (int(self.width / 2 + self.projectile.x_pos), int(self.height / 2 + self.projectile.y_pos)))
+		self._screen.blit(self.projectile.get_image(), (int(self.width / 2 + self.projectile.x_pos), int(self.height / 2 + self.projectile.y_pos)))
 
 		## Update the Display
 		pygame.display.flip()
