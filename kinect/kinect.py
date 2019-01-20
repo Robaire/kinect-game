@@ -68,11 +68,9 @@ class Game():
 
 						## Check for collisions
 						# Building Collisions
-						if proj.x_pos 
-
-
-
-
+						if proj.x_pos > self.width / 2 - self.building.width / 2 and proj.x_pos < self.width / 2 + self.building.width / 2:
+							if proj.y_pos > self.height - self.building.height:
+								proj.text = "Hit!"
 						proj.move() # Move
 
 					
