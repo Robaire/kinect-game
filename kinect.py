@@ -245,10 +245,10 @@ class Hand():
 				x_alt = (x_alt + 1) / 2
 
 				x_position = float(x_alt)
-				
-				if x_position > 1:
+
+				if x_position > 1.0:
 					x_position = 1
-				if x_position < 0:
+				if x_position < 0.0:
 					x_position = 0
 
 				hand_states = {
