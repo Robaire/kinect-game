@@ -315,7 +315,7 @@ class Score():
 class Projectile():
 	def __init__(self, display_width, display_height, font, text, group, velocity):
 
-		self.max_width = 300
+		self.max_width = 400
 
 		self.x_pos = (display_width / 2) + (uniform(-1, 1) * display_width / 4)  # Relative to center
 		self.y_pos = 0 # Relative to top
