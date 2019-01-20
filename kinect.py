@@ -180,7 +180,7 @@ class Game():
 		font_path = pygame.font.match_font("comicsansms")
 		font = pygame.font.Font(font_path, 70)
 		width, height = font.size("kinectmeme.com")
-		url = font.render.("kinectmeme.com", True, (0,0,0), None)
+		url = font.render("kinectmeme.com", True, (0,0,0), None)
 		self._screen.blit(url, (self.height - height, self.width - width))
 		self._screen.blit(url, (self.height - height, 0))
 
