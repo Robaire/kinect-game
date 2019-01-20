@@ -5,7 +5,7 @@ import queue
 
 messages = queue.Queue()
 uri = "ws://trevorlaptop.dyn.wpi.edu/websocket"
-t = 0
+the_thread = None
 
 async def receiver():
     async with websockets.connect(uri) as websocket:
@@ -18,11 +18,11 @@ def loop_in_thread(loop):
 
 def run_web_socket():
     loop = asyncio.get_event_loop()
-    t = threading.Thread(target=loop_in_thread, args=(loop,))
-    t.start()
+    the_thread = threading.Thread(target=loop_in_thread, args=(loop,))
+    the_thread.start()
 
 def exit_web_socket():
-    t.exit()
+    the_thread.exit()
     
 
 
