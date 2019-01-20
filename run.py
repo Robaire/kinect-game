@@ -8,7 +8,7 @@ import pygame
 
 messages = queue.Queue()
 
-uri = "ws://kinectmeme.com/websocket"
+uri = "ws://trevorlaptop.dyn.wpi.edu/websocket"
 
 
 async def receiver():
