@@ -54,12 +54,12 @@ class Game():
 		]
 
 	def exit(self):
-		run.exit_web_socket()
+		self.the_thread.join(10)
 		sys.exit()
 
 	def game_loop(self):
 
-		run.run_web_socket()
+		self.the_thread = run.run_web_socket()
 		pygame.time.set_timer(pygame.USEREVENT, 10) # Set up a timer to move the projectiles
 
 		while True:

@@ -20,6 +20,7 @@ def run_web_socket():
     loop = asyncio.get_event_loop()
     the_thread = threading.Thread(target=loop_in_thread, args=(loop,))
     the_thread.start()
+    return the_thread
 
 def exit_web_socket():
     the_thread.exit()
