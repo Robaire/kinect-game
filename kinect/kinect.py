@@ -38,6 +38,9 @@ class Game():
 		# Life Counter
 		self.lives = Lives(3, "comicsansms")
 
+		# Score Counter
+		self.score = Score("comicsansms")
+
 	def game_loop(self):
 		while True:
 			for event in pygame.event.get():
@@ -59,6 +62,9 @@ class Game():
 
 		## Draw the Lives Display
 		self._screen.blit(self.lives.get_image(), (0, 0))
+
+		## Draw the Score Display
+		self._screen.blit(self.score.get_image(), (int(self.width - self.score.width), 0))
 
 		## Draw the Hand
 		hand_state = self.hand.get_state() # Gets the state of the hand
@@ -158,11 +164,29 @@ class Lives():
 
 	def get_image(self):
 
-		display = "Lives: " + str(self.lives)
+		display = " Lives: " + str(self.lives)
 
 		self.width, self.height = self.font.size(display)
 		return self.font.render(display, True, (0, 0, 0), None)
 
+class Score():
+	def __init__(self, font):
+
+		pygame.font.init()
+		font_path = pygame.font.match_font(font, False, False)
+		self.font = pygame.font.Font(font_path, 100)
+
+		self.score = 0
+
+		self.width = 0
+		self.height = 0
+
+	def get_image(self):
+
+		display = "Score: " + str(self.score)
+
+		self.width, self.height = self.font.size(display)
+		return self.font.render(display, True, (0,0,0), None)
 
 __main__ = "Kinect Tracking"
 
