@@ -69,7 +69,7 @@ class Game():
 									return True
 							return False
 
-					filter(hit_building, self.projectiles)
+					self.projectiles = filter(not hit_building, self.projectiles)
 
 					# Go through all the projectiles and check if they hit anything and move them
 					for proj in self.projectiles:
@@ -100,7 +100,7 @@ class Game():
 		hand_state = self.hand.get_state() # Gets the state of the hand
 
 		if hand_state is not None:  # If no one is in the view of the kinect hand_state is None
-			x_pos, y_pos, hand, confidence= hand_state
+			x_pos, y_pos, hand, confidence = hand_state
 
 			if (x_pos is not float('inf')) and (y_pos is not float('inf')) and (x_pos is not float('-inf')) and (y_pos is not float('-inf')):  # If you are too close to the kinect the positions go to infinity
 
