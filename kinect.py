@@ -53,6 +53,10 @@ class Game():
 			Projectile(self.width, self.height, "comicsansms", "But pretzels.", "foisie", 3)
 		]
 
+	def exit(self):
+		run.exit_web_socket()
+		sys.exit()
+
 	def game_loop(self):
 
 		run.run_web_socket()
@@ -61,9 +65,9 @@ class Game():
 		while True:
 			for event in pygame.event.get():
 				if event.type == pygame.QUIT:
-					sys.exit()
+					self.exit()
 				if event.type == pygame.KEYDOWN:
-					sys.exit()
+					self.exit()
 				if event.type == pygame.USEREVENT:
 
 					# Check if any messages need to be added to the game
@@ -73,7 +77,7 @@ class Game():
 					
 					# Check if there are any lives remaining
 					if self.lives.lives == 0:
-						sys.exit()
+						self.exit()
 					
 					# Check if any projectiles have hit the building
 					remaining_projectiles = []
