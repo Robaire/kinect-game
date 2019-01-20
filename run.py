@@ -4,7 +4,7 @@ import threading
 import queue
 
 messages = queue.Queue()
-uri = "ws://trevorlaptop.dyn.wpi.edu/websocket"
+uri = "ws://kinectmeme.com/websocket"
 t
 
 async def receiver():
