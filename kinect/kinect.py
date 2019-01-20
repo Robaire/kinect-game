@@ -53,7 +53,7 @@ class Game():
 
 	def game_loop(self):
 
-		pygame.time.set_timer(pygame.USEREVENT, 50) # Set up a timer to move the projectiles
+		pygame.time.set_timer(pygame.USEREVENT, 10) # Set up a timer to move the projectiles
 
 		while True:
 			for event in pygame.event.get():
@@ -68,9 +68,10 @@ class Game():
 						proj.move()
 					
 				# Other events as needed
-			self.update()
+			self.draw()
+			pygame.display.flip()
 
-	def update(self):
+	def draw(self):
 
 		## Make the background white
 		self._screen.fill((255, 255, 0)) # Sets the background color
@@ -108,9 +109,6 @@ class Game():
 		## Draw the Projectiles
 		for projectile in self.projectiles:
 			self._screen.blit(projectile.get_image(), (int(self.width / 2 + projectile.x_pos), int(self.height / 2 + projectile.y_pos)))
-
-		## Update the Display
-		pygame.display.flip()
 
 class Hand():
 
@@ -213,11 +211,13 @@ class Score():
 class Projectile():
 	def __init__(self, font, text, group, velocity):
 
-		self.theta = uniform(0, 6.28)
-		radius = 700
+		self.x_pos = (1920 / 2) + (uniform(-1, 1) * 1920 / 4)  # Relative to center
+		self.y_pos = 0 # Relative to top
 
-		self.x_pos = radius * cos(self.theta) # Relative to the center
-		self.y_pos = -1 * abs(radius * sin(self.theta)) # Relative to the center
+		theta = uniform(-3.14, 3.14) / 2 # Choose a random angle
+
+		self.x_vel = velocity * sin(theta)
+		self.y_vel = velocity * cos(theta)
 
 		pygame.font.init()
 		font_path = pygame.font.match_font(font, False, False)
@@ -225,16 +225,23 @@ class Projectile():
 
 		self.text = text
 		self.group = group
-		self.velocity = velocity
+		
 
 	def get_image(self):
 		
 		self.width, self.height = self.font.size(self.text)
 		return self.font.render(self.text, True, (0,0,0), None)
 
-	def move(self):
-		self.x_pos = self.x_pos + self.velocity * cos(self.theta)
-		self.y_pos = self.y_pos + abs(self.velocity * sin(self.theta))
+	def move(self, width, height):
+
+		# Check side walls
+		if self.x_pos < 0 or self.x_pos > width:
+			self.x_vel *= -1
+		if self.y_pos < 0 or self.y_pos > height:
+			self.y_vel *= -1
+
+		self.x_pos += self.x_vel
+		self.y_pos += self.y_vel
 
 
 __main__ = "Kinect Tracking"
