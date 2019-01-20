@@ -122,9 +122,10 @@ class Game():
 										if proj.group == "atwater_kent":
 											self.score.score += 1
 									else:
-										remaining_projectiles.append(proj)
+										0
+										#remaining_projectiles.append(proj)
 
-					self.projectiles = remaining_projectiles
+					#self.projectiles = remaining_projectiles
 
 					# Go through all the projectiles and move them
 					for proj in self.projectiles:
