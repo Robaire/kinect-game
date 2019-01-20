@@ -13,7 +13,7 @@ else:
 	import thread
 
 from random import uniform
-from math import sin, cos, sqrt, fabs
+from math import sin, cos, pi
 
 import run
 
@@ -237,11 +237,9 @@ class Hand():
 				y_position = joint_points[11].y / self._kinect.color_frame_desc.Height
 
 				x_alt = x_position
-			
-				x_position = .5 + ((x_position - .5) * 1.8)
 
 				x_alt = 2 * x_alt - 1
-				x_alt = sqrt(fabs(x_alt)) * (fabs(x_alt) / x_alt)
+				x_alt = sin( (x_alt * pi) / 2)
 				x_alt = (x_alt + 1) / 2
 
 				#x_position = float(x_alt)
