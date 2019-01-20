@@ -315,6 +315,8 @@ class Score():
 class Projectile():
 	def __init__(self, display_width, display_height, font, text, group, velocity):
 
+		self.max_width = 300
+
 		self.x_pos = (display_width / 2) + (uniform(-1, 1) * display_width / 4)  # Relative to center
 		self.y_pos = 0 # Relative to top
 
@@ -342,8 +344,15 @@ class Projectile():
 		else:
 			color = (255, 0, 0)
 
-		return self.font.render(self.text, True, color, None)
+		unscaled = self.font.render(self.text, True, color, None)
 
+		if self.width > self.max_width:
+			self.height = self.max_width / self.width * self.height
+			self.width = self.max_width
+			return pygame.transform.scale(unscaled, (self.max_width, self.height))
+		
+		return unscaled
+			
 	def move(self):
 
 		# Check side walls
