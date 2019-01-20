@@ -216,18 +216,17 @@ class Game():
 		background = pygame.image.load("./images/background.jpg").convert()
 		self._screen.blit(background, (0,0))
 
+		atwater = pygame.image.load("./images/ak.jpg").convert()
+		width = atwater.get_width()
+		height = atwater.get_height()
+		self._screen.blit(atwater, (self.width / 2 - width /2, self.height - height))
+
 		text = "Game Over"
 		font_path = pygame.font.match_font("comicsansms", False, False)
 		font = pygame.font.Font(font_path, 250)
 		width, height = font.size(text)
 
 		self._screen.blit(font.render(text, True, (0,0,0), None), ((self.width / 2  - width / 2), 100))
-
-		atwater = pygame.image.load("./images/ak.jpg").convert()
-		width = atwater.get_width()
-		height = atwater.get_height()
-
-		self._screen.blit(atwater, (self.width / 2 - width /2, self.height - height))
 
 		pygame.display.flip()
 
