@@ -15,7 +15,7 @@ else:
 from random import uniform
 from math import sin, cos
 
-import sockets
+import sockets.py
 
 class Game():
 	def __init__(self, width, height, title):
