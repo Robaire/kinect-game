@@ -3,9 +3,6 @@ import websockets
 import threading
 import queue
 
-import kinect
-import pygame
-
 messages = queue.Queue()
 uri = "ws://trevorlaptop.dyn.wpi.edu/websocket"
 
