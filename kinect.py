@@ -72,6 +72,10 @@ class Game():
 					self.exit()
 				if event.type == pygame.USEREVENT:
 
+					# Check if there are any lives remaining
+					if self.lives.lives == 0:
+						self.game_over()
+					
 					# Check if any messages need to be added to the game
 					if not run.messages.empty() and len(self.projectiles) < 7:
 
@@ -86,11 +90,7 @@ class Game():
 								group = "atwater_kent"
 
 							self.projectiles.append(Projectile(self.width, self.height, "comicsansms", split_message[1], group, 2))
-					
-					# Check if there are any lives remaining
-					#if self.lives.lives == 0:
-						#self.exit()
-					
+
 					# Check if any projectiles have hit the building
 					remaining_projectiles = []
 					for proj in self.projectiles:
@@ -154,10 +154,7 @@ class Game():
 
 					# Go through all the projectiles and move them
 					for proj in self.projectiles:
-					
-						proj.move() # Move
-
-					
+						proj.move() # Move	
 					
 				# Other events as needed
 			self.draw()
@@ -203,6 +200,23 @@ class Game():
 		## Draw the Projectiles
 		for proj in self.projectiles:
 			self._screen.blit(proj.get_image(), (int(proj.x_pos), int(proj.y_pos)))
+
+	def game_over(self):
+		background = pygame.image.load("./images/background.jpg").convert()
+		self._screen.blit(background, (0,0))
+
+		text = "Game Over"
+		font_path = pygame.font.match_font("comicsansms", False, False)
+		font = pygame.font.Font(font_path, 100)
+		self._screen.blit(font.render(text, True, (0,0,0), None), (0,0))
+
+		pygame.display.flip()
+
+		while(True):
+			0
+		
+
+		
 
 class Hand():
 
