@@ -211,8 +211,6 @@ class Game():
 
 	def game_over(self):
 
-		self.socket_thread.join(10)
-
 		self._screen.fill((255, 255, 255)) # Sets the background color
 
 		background = pygame.image.load("./images/background.jpg").convert()
@@ -226,6 +224,8 @@ class Game():
 		self._screen.blit(font.render(text, True, (0,0,0), None), ((self.width / 2  - width / 2), 100))
 
 		pygame.display.flip()
+
+		self.socket_thread.join(10)
 
 		while(True):
 			pygame.time.delay(500)
