@@ -182,6 +182,11 @@ class Game():
 			x_pos, y_pos, hand, confidence = hand_state
 
 			if (x_pos is not float('inf')) and (y_pos is not float('inf')) and (x_pos is not float('-inf')) and (y_pos is not float('-inf')):  # If you are too close to the kinect the positions go to infinity
+			
+				if x_pos > 0.5:
+					x_pos *= 1.2
+				else:
+					x_pos *= 0.8
 
 				x_pos *= self._screen.get_width()
 				y_pos *= self._screen.get_height() 
