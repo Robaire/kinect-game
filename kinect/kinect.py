@@ -97,7 +97,7 @@ class Game():
 				y_pos *= self._screen.get_height() 
 
 
-				if (hand is "closed" && confidence == 1:	
+				if hand is "closed" and confidence == 1:	
 			
 					self._screen.blit(
 						self.hand.get_image(), 
