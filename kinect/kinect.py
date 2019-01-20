@@ -200,11 +200,11 @@ class Score():
 class Projectile():
 	def __init__(self, font, text, group, velocity):
 
-		theta = uniform(0, 3.14)
+		theta = uniform(0, 6.28)
 		radius = 300
 
 		self.x_pos = radius * cos(theta)
-		self.y_pos = radius * sin(theta)
+		self.y_pos = abs(radius * sin(theta))
 
 		pygame.font.init()
 		font_path = pygame.font.match_font(font, False, False)
