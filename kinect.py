@@ -238,14 +238,18 @@ class Hand():
 
 				x_alt = x_position
 			
-				x_position = .5 + ((x_position - .5) * 1.66)
+				x_position = .5 + ((x_position - .5) * 1.8)
 
 				x_alt = 2 * x_alt - 1
 				x_alt = sqrt(fabs(x_alt)) * (fabs(x_alt) / x_alt)
 				x_alt = (x_alt + 1) / 2
 
-				x_position = float(x_alt)
-				
+				#x_position = float(x_alt)
+				if x_position > 1:
+					x_position = 1
+				if x_position < 0:
+					x_position = 0
+
 				hand_states = {
 					0 : "unkown",
 					1 : "not tracked",
