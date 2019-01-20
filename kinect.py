@@ -213,7 +213,7 @@ class Game():
 		font = pygame.font.Font(font_path, 100)
 		width = font.size(text)
 
-		self._screen.blit(font.render(text, True, (0,0,0), None), (self.width / 2  - width / 2, 700))
+		self._screen.blit(font.render(text, True, (0,0,0), None), ((self.width / 2  - width / 2), 700))
 
 		pygame.display.flip()
 
