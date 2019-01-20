@@ -201,10 +201,10 @@ class Projectile():
 	def __init__(self, font, text, group, velocity):
 
 		theta = uniform(0, 6.28)
-		radius = 300
+		radius = 500
 
 		self.x_pos = radius * cos(theta)
-		self.y_pos = abs(radius * sin(theta))
+		self.y_pos = -1 * abs(radius * sin(theta))
 
 		pygame.font.init()
 		font_path = pygame.font.match_font(font, False, False)
