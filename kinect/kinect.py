@@ -87,8 +87,6 @@ class Game():
 					self.projectiles = remaining_projectiles
 
 					# Check if any projectiles have hit Laurie
-					remaining_projectiles = []
-
 					# Determine the position of the hand
 					hand_state = self.hand.get_state() # Gets the state of the hand
 
@@ -106,11 +104,15 @@ class Game():
 								x_pos *= self._screen.get_width() # Scale to screen coordinates
 								y_pos *= self._screen.get_height() # Scale to screen coordinates
 
+								
+
 								# These coordinates are for the center, so we need to offset them to get the top-left corner
 								x_pos -= self.hand.width / 2
 								y_pos -= self.hand.height / 2 
 
 								# We have good hand data and can now check the projectiles
+								remaining_projectiles = []
+
 								for proj in self.projectiles:
 									if (
 									(proj.x_pos > x_pos - proj.width) and
@@ -121,11 +123,10 @@ class Game():
 										# Score the Projectile
 										if proj.text == "atwater_kent":
 											self.score.score += 1
-										#proj.text = str(uniform(0,1))
 									else:
 										remaining_projectiles.append(proj)
 
-					self.projectiles = remaining_projectiles
+								self.projectiles = remaining_projectiles
 
 					# Go through all the projectiles and move them
 					for proj in self.projectiles:
@@ -141,7 +142,7 @@ class Game():
 	def draw(self):
 
 		## Make the background white
-		self._screen.fill((255, 255, 0)) # Sets the background color
+		self._screen.fill((255, 255, 255)) # Sets the background color
 
 		## Draw the Building
 		self._screen.blit(self.building.get_image(), (int(self.width / 2 - self.building.width / 2), int(self.height - self.building.height)))
