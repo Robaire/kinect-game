@@ -13,7 +13,7 @@ else:
 	import thread
 
 from random import uniform
-from math import sin, cos, sign, sqrt
+from math import sin, cos, sqrt
 
 import run
 
@@ -241,7 +241,7 @@ class Hand():
 				x_position = .5 + ((x_position - .5) * 1.66)
 
 				x_alt = 2 * x_alt - 1
-				x_alt = x_alt
+				x_alt = pow(x_alt, (1.0 / 3.0))
 				x_alt = (x_alt + 1) / 2
 
 				x_position = float(x_alt)
