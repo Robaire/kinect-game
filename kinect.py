@@ -66,8 +66,10 @@ class Game():
 					sys.exit()
 				if event.type == pygame.USEREVENT:
 
+					# Check if any messages need to be added to the game
 					if not run.messages.empty():
-						print(run.messages.get())
+						self.projectiles.append(Projectile(self.width, self.height, "comicsansms", run.messages.get(), "foise", 3))
+						#print(run.messages.get())
 					
 					# Check if there are any lives remaining
 					if self.lives.lives == 0:
