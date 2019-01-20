@@ -12,7 +12,8 @@ if sys.hexversion >= 0x03000000:
 else:
 	import thread
 
-from random import randint
+from random import uniform
+from math import sin, cos
 
 class Game():
 	def __init__(self, width, height, title):
@@ -42,6 +43,9 @@ class Game():
 
 		# Score Counter
 		self.score = Score("comicsansms")
+
+		# Test Projective
+		self.projectile = Projectile("comicsansms", "AK is outdated!", "foisie", 100)
 
 	def game_loop(self):
 		while True:
@@ -88,6 +92,9 @@ class Game():
 
 				else: 
 					pygame.draw.circle(self._screen, (0, 0, 0), (int(x_pos), int(y_pos)), 10, 0)
+
+		## Draw the Projectiles
+		self._screen.blit(self.projectile.get_image(), (0, 0, 0), (int(self.width / 2 + self.projectile.x_pos), int(self.height / 2 + self.projectile.y_pos)))
 
 		## Update the Display
 		pygame.display.flip()
@@ -139,7 +146,7 @@ class Hand():
 class Building():
 
 	def __init__(self):
-		self.name = "foise"
+		self.name = "foisie"
 
 		self.image = pygame.image.load("../images/foisie.jpg").convert()
 		self.height = self.image.get_height()
@@ -193,8 +200,12 @@ class Score():
 class Projectile():
 	def __init__(self, font, text, group, velocity):
 
-		theta = randint(0, 360)
-		
+		theta = uniform(0, 3.14)
+		radius = 500
+
+		self.x_pos = radius * cos(theta)
+		self.y_pos = radius * sin(theta)
+
 		pygame.font.init()
 		font_path = pygame.font.match_font(font, False, False)
 		self.font = pygame.font.Font(font_path, 50)
@@ -203,7 +214,8 @@ class Projectile():
 		self.velocity = velocity
 
 
-	def get_image(self)
+	def get_image(self):
+		pass
 
 __main__ = "Kinect Tracking"
 
