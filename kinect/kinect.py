@@ -62,10 +62,20 @@ class Game():
 				if event.type == pygame.KEYDOWN:
 					sys.exit()
 				if event.type == pygame.USEREVENT:
-					# Change the positions of all the projectiles
 
+					# Go through all the projectiles and check if they hit anything and move them
 					for proj in self.projectiles:
-						proj.move()
+
+						## Check for collisions
+						# Building Collisions
+						if proj.x_pos 
+
+
+
+
+						proj.move() # Move
+
+					
 					
 				# Other events as needed
 			self.draw()
@@ -91,7 +101,7 @@ class Game():
 		if hand_state is not None:  # If no one is in the view of the kinect hand_state is None
 			x_pos, y_pos, hand, confidence= hand_state
 
-			if x_pos is not float("inf") or y_pos is not float("inf"):  # If you are too close to the kinect the positions go to infinity
+			if (x_pos is not float("inf")) and (y_pos is not float("inf")) and (x_pos is not float("-inf")) and (y_pos is not float("-inf")):  # If you are too close to the kinect the positions go to infinity
 
 				x_pos *= self._screen.get_width()
 				y_pos *= self._screen.get_height() 
@@ -161,6 +171,7 @@ class Building():
 		self.name = "foisie"
 
 		self.image = pygame.image.load("../images/foisie.jpg").convert()
+
 		self.height = self.image.get_height()
 		self.width = self.image.get_width()
 
@@ -232,8 +243,7 @@ class Projectile():
 		self.width = 0
 		self.height = 0
 		
-	def get_image(self):
-		
+	def get_image(self):	
 		self.width, self.height = self.font.size(self.text)
 		return self.font.render(self.text, True, (0,0,0), None)
 
