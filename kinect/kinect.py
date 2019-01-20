@@ -119,8 +119,7 @@ class Game():
 									(proj.y_pos < y_pos + self.hand.height)
 									):
 										# Score the Projectile
-										if proj.group == "atwater_kent":
-											self.score.score += 1
+										proj.text = str(uniform(0,1))
 									else:
 										0
 										#remaining_projectiles.append(proj)
