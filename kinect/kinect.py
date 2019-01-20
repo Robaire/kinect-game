@@ -15,6 +15,8 @@ else:
 from random import uniform
 from math import sin, cos
 
+import run
+
 class Game():
 	def __init__(self, width, height, title):
 
@@ -53,6 +55,7 @@ class Game():
 
 	def game_loop(self):
 
+		run.run_web_socket()
 		pygame.time.set_timer(pygame.USEREVENT, 10) # Set up a timer to move the projectiles
 
 		while True:
