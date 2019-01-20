@@ -201,7 +201,7 @@ class Projectile():
 	def __init__(self, font, text, group, velocity):
 
 		theta = uniform(0, 6.28)
-		radius = 500
+		radius = 1000
 
 		self.x_pos = radius * cos(theta)
 		self.y_pos = -1 * abs(radius * sin(theta))
