@@ -71,22 +71,62 @@ class Game():
 					remaining_projectiles = []
 					for proj in self.projectiles:
 
-						if not (
+						if (
 						proj.x_pos > self.width / 2 - self.building.width / 2 - proj.width and 
 						proj.x_pos < self.width / 2 + self.building.width / 2 and
-						proj.y_pos > self.height - self.building.height - proj.height):
-							remaining_projectiles.append(proj)
-
-						else:
+						proj.y_pos > self.height - self.building.height - proj.height
+						):
 							# Score the destroyed projectile
 							if proj.group == "foisie":
 								self.score.score += 1
 							else: 
 								self.lives.lives -= 1
+						else:
+							remaining_projectiles.append(proj)
 
 					self.projectiles = remaining_projectiles
 
-					# Go through all the projectiles and check if they hit anything and move them
+					# Check if any projectiles have hit Laurie
+					remaining_projectiles = []
+
+					# Determine the position of the hand
+					hand_state = self.hand.get_state() # Gets the state of the hand
+
+					if hand_state is not None:  # If no one is in the view of the kinect hand_state is None
+						x_pos, y_pos, hand, confidence = hand_state
+
+						if (
+						(x_pos is not float('inf')) and 
+						(y_pos is not float('inf')) and 
+						(x_pos is not float('-inf')) and 
+						(y_pos is not float('-inf'))
+						):  # If you are too close to the kinect the positions go to infinity
+
+							if hand is "closed" and confidence == 1:	
+								x_pos *= self._screen.get_width() # Scale to screen coordinates
+								y_pos *= self._screen.get_height() # Scale to screen coordinates
+
+								# These coordinates are for the center, so we need to offset them to get the top-left corner
+								x_pos -= self.hand.width / 2
+								y_pos -= self.hand.height / 2 
+
+								# We have good hand data and can now check the projectiles
+								for proj in self.projectiles:
+									if (
+									(proj.x_pos > x_pos - proj.width) and
+									(proj.x_pos < x_pos + self.hand.width) and
+									(proj.y_pos > y_pos - proj.height) and
+									(proj.y_pos < y_pos + self.hand.height)
+									):
+										# Score the Projectile
+										if proj.group == "atwater_kent":
+											self.score.score += 1
+									else:
+										remaining_projectiles.append(proj)
+
+					self.projectiles = remaining_projectiles
+
+					# Go through all the projectiles and move them
 					for proj in self.projectiles:
 					
 						proj.move() # Move
@@ -121,7 +161,6 @@ class Game():
 
 				x_pos *= self._screen.get_width()
 				y_pos *= self._screen.get_height() 
-
 
 				if hand is "closed" and confidence == 1:	
 			
