@@ -46,9 +46,9 @@ class Game():
 
 		# List of Projectiles
 		self.projectiles = [
-			Projectile("comicsansms", "Comment 1", "foisie", 10),
-			Projectile("comicsansms", "Comment 2", "foisie", 10),
-			Projectile("comicsansms", "Comment 3", "foisie", 10)
+			Projectile(self.width, self.height, "comicsansms", "Comment 1", "foisie", 10),
+			Projectile(self.width, self.height, "comicsansms", "Comment 2", "foisie", 10),
+			Projectile(self.width, self.height, "comicsansms", "Comment 3", "foisie", 10)
 		]
 
 	def game_loop(self):
@@ -65,7 +65,7 @@ class Game():
 					# Change the positions of all the projectiles
 
 					for proj in self.projectiles:
-						proj.move(self.width, self.height)
+						proj.move()
 					
 				# Other events as needed
 			self.draw()
@@ -94,11 +94,13 @@ class Game():
 			if x_pos is not float("inf") and y_pos is not float("inf"):  # If you are too close to the kinect the positions go to infinity
 
 
+				x_pos -= 0.5  #
+				y_pos -= 0.5 
 				x_pos *= 1.5  # Calibration
 				y_pos *= 1.5  # Calibration
 
-				x_pos *= self._screen.get_width()
-				y_pos *= self._screen.get_height()
+				x_pos = x_pos * self._screen.get_width() / 2 + self._screen.get_width()
+				y_pos = y_pos * self._screen.get_height() / 2 + self._screen.get_height()
 
 				if hand is "closed":	
 			
@@ -111,8 +113,8 @@ class Game():
 					pygame.draw.circle(self._screen, (0, 0, 0), (int(x_pos), int(y_pos)), 10, 0)
 
 		## Draw the Projectiles
-		for projectile in self.projectiles:
-			self._screen.blit(projectile.get_image(), (int(projectile.x_pos), int(projectile.y_pos)))
+		for proj in self.projectiles:
+			self._screen.blit(proj.get_image(), (int(proj.x_pos), int(proj.y_pos)))
 
 class Hand():
 
@@ -213,13 +215,12 @@ class Score():
 		return self.font.render(display, True, (0,0,0), None)
 
 class Projectile():
-	def __init__(self, font, text, group, velocity):
+	def __init__(self, display_width, display_height, font, text, group, velocity):
 
-		self.x_pos = (1920 / 2) + (uniform(-1, 1) * 1920 / 4)  # Relative to center
+		self.x_pos = (display_width / 2) + (uniform(-1, 1) * display_width / 4)  # Relative to center
 		self.y_pos = 0 # Relative to top
 
 		theta = uniform(-3.14, 3.14) / 2 # Choose a random angle
-
 		self.x_vel = velocity * sin(theta)
 		self.y_vel = velocity * cos(theta)
 
@@ -230,6 +231,8 @@ class Projectile():
 		self.text = text
 		self.group = group
 
+		self.display_width = display_width
+
 		self.width = 0
 		self.height = 0
 		
@@ -238,12 +241,12 @@ class Projectile():
 		self.width, self.height = self.font.size(self.text)
 		return self.font.render(self.text, True, (0,0,0), None)
 
-	def move(self, width, height):
+	def move(self):
 
 		# Check side walls
-		if self.x_pos < 0 or self.x_pos > width - self.width:
+		if self.x_pos < 0 or self.x_pos > self.display_width - self.width:
 			self.x_vel *= -1
-		if self.y_pos < 0 or self.y_pos > height - self.height:
+		if self.y_pos < 0 or self.y_pos > self.display_height - self.height:
 			self.y_vel *= -1
 
 		self.x_pos += self.x_vel
