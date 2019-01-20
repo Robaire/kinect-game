@@ -53,7 +53,7 @@ class Game():
 
 	def game_loop(self):
 
-		pygame.timer.set_timer(pygame.USEREVENT, 50) # Set up a timer to move the projectiles
+		pygame.time.set_timer(pygame.USEREVENT, 50) # Set up a timer to move the projectiles
 
 		while True:
 			for event in pygame.event.get():
@@ -209,7 +209,7 @@ class Projectile():
 	def __init__(self, font, text, group, velocity):
 
 		theta = uniform(0, 6.28)
-		radius = 1000
+		radius = 500
 
 		self.x_pos = radius * cos(theta) # Relative to the center
 		self.y_pos = -1 * abs(radius * sin(theta)) # Relative to the center
