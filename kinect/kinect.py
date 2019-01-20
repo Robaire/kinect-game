@@ -70,11 +70,9 @@ class Game():
 							# return True
 					remaining_projectiles = []
 					for proj in self.projectiles:
-						if proj.x_pos > self.width / 2 - self.building.width / 2 - proj.width and proj.x_pos < self.width / 2 + self.building.width / 2:
-							if proj.y_pos > self.height - self.building.height - proj.height:
-								0  # Do nothing!
-
-						remaining_projectiles.append(proj)
+						if not (proj.x_pos > self.width / 2 - self.building.width / 2 - proj.width and proj.x_pos < self.width / 2 + self.building.width / 2):
+							if not (proj.y_pos > self.height - self.building.height - proj.height):
+								remaining_projectiles.append(proj)
 					
 					self.projectiles = remaining_projectiles
 
