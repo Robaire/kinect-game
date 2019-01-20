@@ -15,8 +15,6 @@ else:
 from random import uniform
 from math import sin, cos
 
-import run
-
 class Game():
 	def __init__(self, width, height, title):
 
@@ -55,7 +53,6 @@ class Game():
 
 	def game_loop(self):
 
-		run.run_web_socket()
 		pygame.time.set_timer(pygame.USEREVENT, 10) # Set up a timer to move the projectiles
 
 		while True:
@@ -319,8 +316,8 @@ class Projectile():
 		self.y_pos += self.y_vel
 
 
-__main__ = "Kinect Tracking"
+# __main__ = "Kinect Tracking"
 
-game = Game(1920, 1080, "Dumb Kinect Game")
-pygame.time.delay(3000)
-game.game_loop()
+# game = Game(1920, 1080, "Dumb Kinect Game")
+# pygame.time.delay(3000)
+# game.game_loop()
