@@ -31,10 +31,3 @@ def run_web_socket():
 #         print(messages.get())
 
 ###########################################
-
-__main__ = "Kinect Tracking"
-
-game = kinect.Game(1920, 1080, "Dumb Kinect Game")
-pygame.time.delay(3000)
-game.game_loop()
-
