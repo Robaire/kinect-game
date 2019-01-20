@@ -181,8 +181,8 @@ class Game():
 		font = pygame.font.Font(font_path, 70)
 		width, height = font.size("kinectmeme.com")
 		url = font.render("kinectmeme.com", True, (0,0,0), None)
-		self._screen.blit(url, (self.height - height, self.width - width))
-		self._screen.blit(url, (self.height - height, 0))
+		self._screen.blit(url, (self.width - width, self.height - height))
+		self._screen.blit(url, (0, self.height - height))
 
 		## Draw the Hand
 		hand_state = self.hand.get_state() # Gets the state of the hand
