@@ -62,20 +62,28 @@ class Game():
 				if event.type == pygame.KEYDOWN:
 					sys.exit()
 				if event.type == pygame.USEREVENT:
-
 					
-							# if proj.x_pos > self.width / 2 - self.building.width / 2 - proj.width and proj.x_pos < self.width / 2 + self.building.width / 2:
-							# 	if proj.y_pos > self.height - self.building.height - proj.height:
-							# 		return False
-							# return True
+					# Check if there are any lives remaining
+					if self.lives.lives == 0:
+						sys.exit()
+					
+					# Check if any projectiles have hit the building
 					remaining_projectiles = []
 					for proj in self.projectiles:
+
 						if not (
 						proj.x_pos > self.width / 2 - self.building.width / 2 - proj.width and 
 						proj.x_pos < self.width / 2 + self.building.width / 2 and
 						proj.y_pos > self.height - self.building.height - proj.height):
 							remaining_projectiles.append(proj)
-					
+
+						else:
+							# Score the destroyed projectile
+							if proj.group == "foisie":
+								self.score.score += 1
+							else: 
+								self.lives.lives -= 1
+
 					self.projectiles = remaining_projectiles
 
 					# Go through all the projectiles and check if they hit anything and move them
