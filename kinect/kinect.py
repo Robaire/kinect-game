@@ -46,9 +46,9 @@ class Game():
 
 		# List of Projectiles
 		self.projectiles = [
-			Projectile(self.width, self.height, "comicsansms", "Comment 1", "foisie", 10),
-			Projectile(self.width, self.height, "comicsansms", "Comment 2", "foisie", 10),
-			Projectile(self.width, self.height, "comicsansms", "Comment 3", "foisie", 10)
+			Projectile(self.width, self.height, "comicsansms", "Comment 1", "foisie", 5),
+			Projectile(self.width, self.height, "comicsansms", "Comment 2", "foisie", 5),
+			Projectile(self.width, self.height, "comicsansms", "Comment 3", "foisie", 5)
 		]
 
 	def game_loop(self):
@@ -91,7 +91,7 @@ class Game():
 		if hand_state is not None:  # If no one is in the view of the kinect hand_state is None
 			x_pos, y_pos, hand = hand_state
 
-			if x_pos is not float("inf") and y_pos is not float("inf"):  # If you are too close to the kinect the positions go to infinity
+			if x_pos is not float("inf") or y_pos is not float("inf"):  # If you are too close to the kinect the positions go to infinity
 
 				x_pos *= self._screen.get_width()
 				y_pos *= self._screen.get_height() 
