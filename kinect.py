@@ -324,7 +324,12 @@ class Projectile():
 		
 	def get_image(self):	
 		self.width, self.height = self.font.size(self.text)
-		return self.font.render(self.text, True, (0,0,0), None)
+		if self.group == "foisie":
+			color = (255, 0, 0)
+		else:
+			color =(0, 255, 0)
+			
+		return self.font.render(self.text, True, color, None)
 
 	def move(self):
 
