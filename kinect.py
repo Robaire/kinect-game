@@ -185,7 +185,7 @@ class Hand():
 		self._kinect = kinect  # Kinect Runtime Object
 		self._bodies = None  # Stores skeleton position data
 
-		self.image = pygame.image.load("../images/laurie.png").convert_alpha()  # Load the image of Laurie's face
+		self.image = pygame.image.load("./images/laurie.png").convert_alpha()  # Load the image of Laurie's face
 		self.height = self.image.get_height()
 		self.width = self.image.get_width()
 
@@ -227,7 +227,7 @@ class Building():
 	def __init__(self):
 		self.name = "foisie"
 
-		self.image = pygame.image.load("../images/foisie.jpg").convert()
+		self.image = pygame.image.load("./images/foisie.jpg").convert()
 
 		self.height = self.image.get_height()
 		self.width = self.image.get_width()
